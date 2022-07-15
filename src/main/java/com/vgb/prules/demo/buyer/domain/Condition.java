@@ -2,6 +2,8 @@ package com.vgb.prules.demo.buyer.domain;
 
 import com.vgb.prules.demo.common.domain.attribute.Attribute;
 
+import java.util.Objects;
+
 public class Condition {
     private  final RuleConstants.ComparatorOperator comparatorOperator;
     private final Attribute targetAttribute;
@@ -25,5 +27,18 @@ public class Condition {
                 "comparatorOperator=" + comparatorOperator +
                 ", targetAttribute=" + targetAttribute +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Condition condition = (Condition) o;
+        return comparatorOperator == condition.comparatorOperator && Objects.equals(targetAttribute, condition.targetAttribute);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(comparatorOperator, targetAttribute);
     }
 }

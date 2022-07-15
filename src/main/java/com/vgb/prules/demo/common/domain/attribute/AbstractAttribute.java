@@ -1,5 +1,7 @@
 package com.vgb.prules.demo.common.domain.attribute;
 
+import java.util.Objects;
+
 public abstract class AbstractAttribute<T> implements Attribute<T>{
     protected final String name;
     protected final T value;
@@ -30,5 +32,18 @@ public abstract class AbstractAttribute<T> implements Attribute<T>{
                 "name='" + name + '\'' +
                 ", value=" + value +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AbstractAttribute<?> that = (AbstractAttribute<?>) o;
+        return Objects.equals(name, that.name) && Objects.equals(value, that.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, value);
     }
 }

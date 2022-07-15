@@ -1,5 +1,6 @@
 package com.vgb.prules.demo;
 
+import com.vgb.prules.demo.demo.Demo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
