@@ -6,10 +6,7 @@ public interface Attribute <T> extends Serializable {
     String getName();
     T getValue();
     boolean matches(T value);
-    AttributeType getAttributeType();
+    AttributeConstants.AttributeType getAttributeType();
 
 
-    enum AttributeType {
-        BOOLEAN, NUMBER, STRING
-    }
 }

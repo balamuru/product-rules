@@ -6,7 +6,6 @@ import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 public class Product implements Serializable {
     private String id;
@@ -29,7 +28,12 @@ public class Product implements Serializable {
         return Collections.unmodifiableMap(attributeMap);
     }
 
+    public void setAttributeMap(Map<String, Attribute> attributeMap) {
+        this.attributeMap = attributeMap;
+    }
+
     public String getId() {
+        //mandatory
         return id;
     }
 
@@ -37,8 +41,14 @@ public class Product implements Serializable {
         this.id = id;
     }
 
-    public void setAttributeMap(Map<String, Attribute> attributeMap) {
-        this.attributeMap = attributeMap;
+    public String name() {
+        //mandatory
+        return (String) this.attributeMap.get("name").getValue();
+    }
+
+    public float qty() {
+        //mandatory
+        return (Float) this.attributeMap.get("qty").getValue();
     }
 
     @Override

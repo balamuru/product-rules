@@ -7,8 +7,8 @@ public class BooleanAttribute extends AbstractAttribute<Boolean> {
     }
 
     @Override
-    public AttributeType getAttributeType() {
-        return AttributeType.BOOLEAN;
+    public AttributeConstants.AttributeType getAttributeType() {
+        return AttributeConstants.AttributeType.BOOLEAN;
     }
 
     @Override

@@ -7,8 +7,8 @@ public class StringAttribute extends AbstractAttribute<String> {
     }
 
     @Override
-    public AttributeType getAttributeType() {
-        return AttributeType.STRING;
+    public AttributeConstants.AttributeType getAttributeType() {
+        return AttributeConstants.AttributeType.STRING;
     }
 
     @Override

@@ -6,8 +6,8 @@ public class NumberAttribute extends AbstractAttribute<Float> {
     }
 
     @Override
-    public AttributeType getAttributeType() {
-        return AttributeType.NUMBER;
+    public AttributeConstants.AttributeType getAttributeType() {
+        return AttributeConstants.AttributeType.NUMBER;
     }
 
     @Override

@@ -1,7 +1,7 @@
 package com.vgb.prules.demo.buyer.service;
 
-import com.vgb.prules.demo.common.domain.attribute.BooleanAttribute;
 import com.vgb.prules.demo.buyer.domain.ComparatorOperator;
+import com.vgb.prules.demo.common.domain.attribute.BooleanAttribute;
 import org.springframework.stereotype.Service;
 
 @Service

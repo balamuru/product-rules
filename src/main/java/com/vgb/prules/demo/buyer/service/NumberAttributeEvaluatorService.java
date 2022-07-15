@@ -1,7 +1,7 @@
 package com.vgb.prules.demo.buyer.service;
 
-import com.vgb.prules.demo.common.domain.attribute.NumberAttribute;
 import com.vgb.prules.demo.buyer.domain.ComparatorOperator;
+import com.vgb.prules.demo.common.domain.attribute.NumberAttribute;
 import org.springframework.stereotype.Service;
 
 @Service

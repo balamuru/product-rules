@@ -2,7 +2,7 @@ package com.vgb.prules.demo.buyer.domain;
 
 import com.vgb.prules.demo.common.domain.attribute.Attribute;
 
-class Condition {
+public class Condition {
     private  final ComparatorOperator comparatorOperator;
     private final Attribute targetNameAndValue;
 
