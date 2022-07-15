@@ -17,7 +17,6 @@ public class ProductRulesApplication implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
-		System.err.println("foooo");
 		demo.init();
 		demo.run();
 	}

@@ -1,4 +1,4 @@
-package com.vgb.prules.demo.buyer.service;
+package com.vgb.prules.demo.buyer.service.evaluator;
 
 import com.vgb.prules.demo.buyer.domain.ComparatorOperator;
 import com.vgb.prules.demo.common.domain.attribute.Attribute;
@@ -8,7 +8,6 @@ import com.vgb.prules.demo.common.domain.attribute.StringAttribute;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service("master-attribute-evaluator-service")

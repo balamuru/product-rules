@@ -1,4 +1,4 @@
-package com.vgb.prules.demo.buyer.service;
+package com.vgb.prules.demo.buyer.service.evaluator;
 
 import com.vgb.prules.demo.buyer.domain.ComparatorOperator;
 import com.vgb.prules.demo.common.domain.attribute.NumberAttribute;

@@ -7,6 +7,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.vgb.prules.demo.common.domain.attribute.AttributeConstants.*;
+
 public class Product implements Serializable {
     private String id;
     private Map<String, Attribute> attributeMap;
@@ -28,12 +30,12 @@ public class Product implements Serializable {
         return Collections.unmodifiableMap(attributeMap);
     }
 
-    public Attribute getAttribute(String attributeName) {
-        return attributeMap.getOrDefault(attributeName, null);
-    }
-
     public void setAttributeMap(Map<String, Attribute> attributeMap) {
         this.attributeMap = attributeMap;
+    }
+
+    public Attribute getAttribute(String attributeName) {
+        return attributeMap.getOrDefault(attributeName, null);
     }
 
     public String getId() {
@@ -47,12 +49,17 @@ public class Product implements Serializable {
 
     public String name() {
         //mandatory
-        return (String) this.attributeMap.get("name").getValue();
+        return (String) this.attributeMap.get(NAME).getValue();
     }
 
     public float qty() {
         //mandatory
-        return (Float) this.attributeMap.get("qty").getValue();
+        return (Float) this.attributeMap.get(QTY).getValue();
+    }
+
+    public float price() {
+        //mandatory
+        return (Float) this.attributeMap.get(PRICE).getValue();
     }
 
     @Override

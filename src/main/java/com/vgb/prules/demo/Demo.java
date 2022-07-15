@@ -3,7 +3,8 @@ package com.vgb.prules.demo;
 import com.vgb.prules.demo.buyer.domain.Condition;
 import com.vgb.prules.demo.buyer.domain.Rule;
 import com.vgb.prules.demo.buyer.repository.ProductRulesRepository;
-import com.vgb.prules.demo.buyer.service.RuleService;
+import com.vgb.prules.demo.buyer.service.matcher.MatchingEngine;
+import com.vgb.prules.demo.buyer.service.matcher.MatchingService;
 import com.vgb.prules.demo.common.domain.Product;
 import com.vgb.prules.demo.common.domain.attribute.BooleanAttribute;
 import com.vgb.prules.demo.common.domain.attribute.NumberAttribute;
@@ -13,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 
 import static com.vgb.prules.demo.buyer.domain.ComparatorOperator.*;
@@ -29,7 +29,7 @@ public class Demo {
     private ProductRulesRepository productRulesRepository;
 
     @Autowired
-    private RuleService ruleService;
+    private MatchingEngine matchingEngine;
 
     public void init() {
         initProductRepository();
@@ -37,6 +37,10 @@ public class Demo {
 
 
     }
+    public void run() {
+        matchingEngine.match();
+    }
+
 
     private void initRulesRepository() {
         //clear
@@ -115,14 +119,6 @@ public class Demo {
         }}));
     }
 
-
-    public void run() {
-//        productRepository.getProducts().forEach(product -> System.err.println(product));
-//        final Collection<Product> products = productRepository.getProducts("Nike TShirt", "Golden Goose Feather");
-
-
-        ruleService.matchAllSellerProducts();
-    }
 
 
 }
