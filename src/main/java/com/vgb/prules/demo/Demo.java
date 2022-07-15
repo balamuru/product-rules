@@ -4,7 +4,6 @@ import com.vgb.prules.demo.buyer.domain.Condition;
 import com.vgb.prules.demo.buyer.domain.Rule;
 import com.vgb.prules.demo.buyer.repository.ProductRulesRepository;
 import com.vgb.prules.demo.buyer.service.matcher.MatchingEngine;
-import com.vgb.prules.demo.buyer.service.matcher.MatchingService;
 import com.vgb.prules.demo.common.domain.Product;
 import com.vgb.prules.demo.common.domain.attribute.BooleanAttribute;
 import com.vgb.prules.demo.common.domain.attribute.NumberAttribute;
@@ -16,7 +15,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static com.vgb.prules.demo.buyer.domain.ComparatorOperator.*;
+import static com.vgb.prules.demo.buyer.domain.RuleConstants.ComparatorOperator.*;
 import static com.vgb.prules.demo.common.domain.attribute.AttributeConstants.*;
 
 @Component

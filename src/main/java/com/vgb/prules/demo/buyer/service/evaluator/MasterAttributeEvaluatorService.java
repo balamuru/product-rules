@@ -1,6 +1,6 @@
 package com.vgb.prules.demo.buyer.service.evaluator;
 
-import com.vgb.prules.demo.buyer.domain.ComparatorOperator;
+import com.vgb.prules.demo.buyer.domain.RuleConstants;
 import com.vgb.prules.demo.common.domain.attribute.Attribute;
 import com.vgb.prules.demo.common.domain.attribute.BooleanAttribute;
 import com.vgb.prules.demo.common.domain.attribute.NumberAttribute;
@@ -25,7 +25,7 @@ public class MasterAttributeEvaluatorService implements AttributeEvaluatorServic
 
 
     @Override
-    public boolean evaluate(Attribute conditionAttribute, ComparatorOperator comparatorOperator, Attribute actualAttribute) {
+    public boolean evaluate(Attribute conditionAttribute, RuleConstants.ComparatorOperator comparatorOperator, Attribute actualAttribute) {
 
         //it is possible that the attribute might not exist in the document
         if (actualAttribute == null) {

@@ -3,15 +3,15 @@ package com.vgb.prules.demo.buyer.domain;
 import com.vgb.prules.demo.common.domain.attribute.Attribute;
 
 public class Condition {
-    private  final ComparatorOperator comparatorOperator;
+    private  final RuleConstants.ComparatorOperator comparatorOperator;
     private final Attribute targetAttribute;
 
-    public Condition(ComparatorOperator comparatorOperator, Attribute targetAttribute) {
+    public Condition(RuleConstants.ComparatorOperator comparatorOperator, Attribute targetAttribute) {
         this.comparatorOperator = comparatorOperator;
         this.targetAttribute = targetAttribute;
     }
 
-    public ComparatorOperator getComparatorOperator() {
+    public RuleConstants.ComparatorOperator getComparatorOperator() {
         return comparatorOperator;
     }
 

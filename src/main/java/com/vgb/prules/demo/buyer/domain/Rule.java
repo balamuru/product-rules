@@ -5,24 +5,24 @@ import java.util.List;
 
 public class Rule {
     private final int maxScore;
-    private final LogicalOperator logicalOperator;
+    private final RuleConstants.LogicalOperator logicalOperator;
     private final List<Condition> conditions;
 
-    public Rule(int maxScore, LogicalOperator logicalOperator, List<Condition> conditions) {
+    public Rule(int maxScore, RuleConstants.LogicalOperator logicalOperator, List<Condition> conditions) {
         this.maxScore = maxScore;
         this.logicalOperator = logicalOperator;
         this.conditions = conditions;
     }
 
     public Rule(int maxScore, List<Condition> conditions) {
-        this(maxScore, LogicalOperator.AND, conditions);
+        this(maxScore, RuleConstants.LogicalOperator.AND, conditions);
     }
 
     public int getMaxScore() {
         return maxScore;
     }
 
-    public LogicalOperator getLogicalOperator() {
+    public RuleConstants.LogicalOperator getLogicalOperator() {
         return logicalOperator;
     }
 
