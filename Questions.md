@@ -28,6 +28,7 @@ Questions and Assumptions
    b. What if a product has several (multi-condition) rules and one rule passes more than 50 % conditions while the other passes 0 % conditions. Please clarify behavior - as I'm not clear on how many rules a product can have.
    2. **TBD**
 8. Can you **explain a sample calculation**. This might help clarify a lot of the above questions ? I've  performed a demo calculation -  any corrections will help clear any uncertainties / incorrect assumptions
+**In progress**
 eg
 ```
 Given
