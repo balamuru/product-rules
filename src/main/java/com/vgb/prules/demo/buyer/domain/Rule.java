@@ -1,5 +1,6 @@
 package com.vgb.prules.demo.buyer.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Rule {
@@ -17,4 +18,15 @@ public class Rule {
         this(maxScore, LogicalOperator.AND, conditions);
     }
 
+    public int getMaxScore() {
+        return maxScore;
+    }
+
+    public LogicalOperator getLogicalOperator() {
+        return logicalOperator;
+    }
+
+    public List<Condition> getConditions() {
+        return Collections.unmodifiableList(conditions);
+    }
 }

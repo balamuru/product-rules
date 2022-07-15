@@ -3,6 +3,7 @@ package com.vgb.prules.demo;
 import com.vgb.prules.demo.buyer.domain.Condition;
 import com.vgb.prules.demo.buyer.domain.Rule;
 import com.vgb.prules.demo.buyer.repository.ProductRulesRepository;
+import com.vgb.prules.demo.buyer.service.RuleService;
 import com.vgb.prules.demo.common.domain.Product;
 import com.vgb.prules.demo.common.domain.attribute.BooleanAttribute;
 import com.vgb.prules.demo.common.domain.attribute.NumberAttribute;
@@ -27,6 +28,9 @@ public class Demo {
     @Autowired
     private ProductRulesRepository productRulesRepository;
 
+    @Autowired
+    private RuleService ruleService;
+
     public void init() {
         initProductRepository();
         initRulesRepository();
@@ -43,7 +47,7 @@ public class Demo {
             add(new Rule(100,
                     new ArrayList<>() {{
                         add(new Condition(EQUALS, new StringAttribute(COLOR, "Blue")));
-                        add(new Condition(LESS_THAN, new NumberAttribute(PRICE, 17.75f)));
+                        add(new Condition(LESS_THAN, new NumberAttribute(PRICE, 20f)));
                         add(new Condition(GREATER_THAN, new NumberAttribute(QTY, 100)));
                     }}
             ));
@@ -114,14 +118,10 @@ public class Demo {
 
     public void run() {
 //        productRepository.getProducts().forEach(product -> System.err.println(product));
-        final Collection<Product> products = productRepository.getProducts("Nike TShirt", "Golden Goose Feather");
-
-        for (Product product : products) {
-            System.err.println(product);
+//        final Collection<Product> products = productRepository.getProducts("Nike TShirt", "Golden Goose Feather");
 
 
-        }
-
+        ruleService.matchAllSellerProducts();
     }
 
 

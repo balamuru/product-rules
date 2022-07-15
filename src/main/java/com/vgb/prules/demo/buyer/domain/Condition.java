@@ -4,18 +4,26 @@ import com.vgb.prules.demo.common.domain.attribute.Attribute;
 
 public class Condition {
     private  final ComparatorOperator comparatorOperator;
-    private final Attribute targetNameAndValue;
+    private final Attribute targetAttribute;
 
-    public Condition(ComparatorOperator comparatorOperator, Attribute targetNameAndValue) {
+    public Condition(ComparatorOperator comparatorOperator, Attribute targetAttribute) {
         this.comparatorOperator = comparatorOperator;
-        this.targetNameAndValue = targetNameAndValue;
+        this.targetAttribute = targetAttribute;
     }
 
     public ComparatorOperator getComparatorOperator() {
         return comparatorOperator;
     }
 
-    public Attribute getTargetNameAndValue() {
-        return targetNameAndValue;
+    public Attribute getTargetAttribute() {
+        return targetAttribute;
+    }
+
+    @Override
+    public String toString() {
+        return "Condition{" +
+                "comparatorOperator=" + comparatorOperator +
+                ", targetAttribute=" + targetAttribute +
+                '}';
     }
 }

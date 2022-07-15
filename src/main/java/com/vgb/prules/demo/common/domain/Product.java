@@ -28,6 +28,10 @@ public class Product implements Serializable {
         return Collections.unmodifiableMap(attributeMap);
     }
 
+    public Attribute getAttribute(String attributeName) {
+        return attributeMap.getOrDefault(attributeName, null);
+    }
+
     public void setAttributeMap(Map<String, Attribute> attributeMap) {
         this.attributeMap = attributeMap;
     }

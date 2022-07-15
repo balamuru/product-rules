@@ -10,13 +10,13 @@ public class NumberAttributeEvaluatorService implements AttributeEvaluatorServic
     public boolean evaluate(NumberAttribute conditionAttribute, ComparatorOperator comparatorOperator, NumberAttribute actualAttribute) {
         switch (comparatorOperator) {
             case EQUALS:
-                return conditionAttribute.getValue() == actualAttribute.getValue();
+                return actualAttribute.getValue() == conditionAttribute.getValue();
             case NOT_EQUALS:
-                return conditionAttribute.getValue() != actualAttribute.getValue();
+                return actualAttribute.getValue() != conditionAttribute.getValue();
             case GREATER_THAN:
-                return conditionAttribute.getValue() > actualAttribute.getValue();
+                return actualAttribute.getValue() > conditionAttribute.getValue();
             case LESS_THAN:
-                return conditionAttribute.getValue() < actualAttribute.getValue();
+                return  actualAttribute.getValue() < conditionAttribute.getValue();
             default:
                 throw new UnsupportedOperationException("Unsupported operator: " + comparatorOperator);
         }
