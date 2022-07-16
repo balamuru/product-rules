@@ -32,9 +32,25 @@ for each product in products
 
 #### Scoring Algorithm
 ```
+get a list of product matching results that pass the filter threshold (productid, price, qty ....) 
+initialize counters for weightedSPriceSum, totalQty, distinctPriceSum, distinctQty
 
+for each result
+  accumulate 
+    weightedSPriceSum+=price*qty;
+    totalQty+=qty;
+    distinctPriceSum+=price;
+    distinctQty+=1;  
+
+display distinctPriceSum
+display distinctQty
+display distinct average = distinctPriceSum/distinctQty
+
+display weightedSPriceSum
+display totalQty
+display weighted average = weightedSPriceSum/totalQty
 ```
-TODO
+
 
 ### If you make any assumptions, write them down.
 #### Project Scope / Assumptions
