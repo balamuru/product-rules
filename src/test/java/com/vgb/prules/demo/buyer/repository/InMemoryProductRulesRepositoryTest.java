@@ -22,7 +22,7 @@ class InMemoryProductRulesRepositoryTest {
 
 
     @Test
-    void testProductRules() {
+    void testProductRulesRepository() {
 
         List<Rule> rules = new ArrayList<>() {{
             add(DemoDataUtils.RULE1A);
@@ -35,6 +35,10 @@ class InMemoryProductRulesRepositoryTest {
         rules.forEach(rule ->
                 assertTrue(retrievedRules.contains(rule))
         );
+
+        //delete all and verify no more rules
+        repository.deleteAll();
+        assertTrue(repository.getRuleByProductName("foo").isEmpty());
     }
 
 }
