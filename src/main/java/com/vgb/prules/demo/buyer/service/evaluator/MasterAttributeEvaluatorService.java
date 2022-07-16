@@ -26,7 +26,7 @@ public class MasterAttributeEvaluatorService implements AttributeEvaluatorServic
 
 
     @Override
-    public boolean evaluate(Attribute conditionAttribute, RuleConstants.ComparatorOperator comparatorOperator, Attribute actualAttribute) throws MatcherException {
+    public boolean evaluate(Attribute actualAttribute, RuleConstants.ComparatorOperator comparatorOperator, Attribute conditionAttribute) throws MatcherException {
 
         //it is possible that the attribute might not exist in the document
         if (actualAttribute == null) {
@@ -44,11 +44,11 @@ public class MasterAttributeEvaluatorService implements AttributeEvaluatorServic
         }
         switch (conditionAttribute.getAttributeType()) {
             case NUMBER:
-                return numberAttributeEvaluatorService.evaluate((NumberAttribute) conditionAttribute, comparatorOperator, (NumberAttribute) actualAttribute);
+                return numberAttributeEvaluatorService.evaluate((NumberAttribute) actualAttribute, comparatorOperator, (NumberAttribute) conditionAttribute);
             case STRING:
-                return stringAttributeEvaluatorService.evaluate((StringAttribute) conditionAttribute, comparatorOperator, (StringAttribute) actualAttribute);
+                return stringAttributeEvaluatorService.evaluate((StringAttribute) actualAttribute, comparatorOperator, (StringAttribute) conditionAttribute);
             case BOOLEAN:
-                return booleanAttributeEvaluatorService.evaluate((BooleanAttribute) conditionAttribute, comparatorOperator, (BooleanAttribute) actualAttribute);
+                return booleanAttributeEvaluatorService.evaluate((BooleanAttribute) actualAttribute, comparatorOperator, (BooleanAttribute) conditionAttribute);
             default:
                 throw new UnsupportedOperationException("Unsupported attribute type: " + conditionAttribute.getAttributeType());
 

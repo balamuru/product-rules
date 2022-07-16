@@ -50,8 +50,8 @@ public class ProductMatchingServiceImpl implements ProductMatchingService {
                         final Attribute actualAttribute = product.getAttribute(targetAttribute.getName());
                         boolean matched;
                         try {
-                            matched = attributeEvaluatorService.evaluate(targetAttribute,
-                                    targetCondition.getComparatorOperator(), actualAttribute);
+                            matched = attributeEvaluatorService.evaluate(actualAttribute, targetCondition.getComparatorOperator(), targetAttribute
+                            );
                         } catch (MatcherException e) {
                             matched = false;
                             log.error(e.getMessage());

@@ -1,4 +1,4 @@
-package com.vgb.prules.demo.demo;
+package com.vgb.prules.demo.util;
 
 import com.vgb.prules.demo.buyer.domain.Condition;
 import com.vgb.prules.demo.buyer.domain.Rule;

@@ -11,20 +11,20 @@ import org.springframework.stereotype.Service;
 public class NumberAttributeEvaluatorService implements AttributeEvaluatorService<NumberAttribute> {
     final Logger log = LoggerFactory.getLogger(this.getClass());
     @Override
-    public boolean evaluate(NumberAttribute conditionAttribute, RuleConstants.ComparatorOperator comparatorOperator, NumberAttribute actualAttribute) throws MatcherException {
+    public boolean evaluate(NumberAttribute actualAttribute, RuleConstants.ComparatorOperator comparatorOperator, NumberAttribute conditionAttribute) throws MatcherException {
         if (!actualAttribute.getName().equals(conditionAttribute.getName())) {
             log.error("Mismatching names" + actualAttribute + " vs " + conditionAttribute);
             throw new MatcherException("Mismatching attribute names" + actualAttribute + " vs " + conditionAttribute);
         }
         switch (comparatorOperator) {
             case EQUALS:
-                return actualAttribute.getValue() == conditionAttribute.getValue();
+                return actualAttribute.getValue().floatValue() == conditionAttribute.getValue().floatValue();
             case NOT_EQUALS:
-                return actualAttribute.getValue() != conditionAttribute.getValue();
+                return actualAttribute.getValue().floatValue() != conditionAttribute.getValue().floatValue();
             case GREATER_THAN:
-                return actualAttribute.getValue() > conditionAttribute.getValue();
+                return actualAttribute.getValue().floatValue() > conditionAttribute.getValue().floatValue();
             case LESS_THAN:
-                return actualAttribute.getValue() < conditionAttribute.getValue();
+                return actualAttribute.getValue().floatValue() < conditionAttribute.getValue().floatValue();
             default:
                 throw new UnsupportedOperationException("Unsupported operator: " + comparatorOperator);
         }

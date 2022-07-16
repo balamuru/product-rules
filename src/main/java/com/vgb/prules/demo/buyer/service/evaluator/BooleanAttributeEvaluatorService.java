@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class BooleanAttributeEvaluatorService implements AttributeEvaluatorService<BooleanAttribute> {
     final Logger log = LoggerFactory.getLogger(this.getClass());
     @Override
-    public boolean evaluate(BooleanAttribute conditionAttribute, RuleConstants.ComparatorOperator comparatorOperator, BooleanAttribute actualAttribute) throws MatcherException {
+    public boolean evaluate(BooleanAttribute actualAttribute, RuleConstants.ComparatorOperator comparatorOperator, BooleanAttribute conditionAttribute) throws MatcherException {
         if (!actualAttribute.getName().equals(conditionAttribute.getName())) {
             log.error("Mismatching names" + actualAttribute + " vs " + conditionAttribute);
             throw new MatcherException("Mismatching attribute names" + actualAttribute + " vs " + conditionAttribute);

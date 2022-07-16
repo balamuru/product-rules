@@ -1,7 +1,7 @@
 package com.vgb.prules.demo.buyer.repository;
 
 import com.vgb.prules.demo.buyer.domain.Rule;
-import com.vgb.prules.demo.demo.DemoDataUtils;
+import com.vgb.prules.demo.util.DemoDataUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

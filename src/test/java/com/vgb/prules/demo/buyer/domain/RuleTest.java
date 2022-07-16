@@ -2,7 +2,7 @@ package com.vgb.prules.demo.buyer.domain;
 
 import com.vgb.prules.demo.common.domain.attribute.NumberAttribute;
 import com.vgb.prules.demo.common.domain.attribute.StringAttribute;
-import com.vgb.prules.demo.demo.DemoDataUtils;
+import com.vgb.prules.demo.util.DemoDataUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -16,9 +16,7 @@ class BooleanAttributeEvaluatorServiceTest {
     void evaluateEquals() throws MatcherException {
         assertEquals(true,
                 attributeEvaluatorService.evaluate(
-                        new BooleanAttribute("foo", true),
-                        RuleConstants.ComparatorOperator.EQUALS,
-                        new BooleanAttribute("foo", true)
+                        new BooleanAttribute("foo", true), RuleConstants.ComparatorOperator.EQUALS, new BooleanAttribute("foo", true)
                 )
         );
     }
@@ -28,9 +26,7 @@ class BooleanAttributeEvaluatorServiceTest {
 
         MatcherException thrown = Assertions.assertThrows(MatcherException.class, () -> {
             attributeEvaluatorService.evaluate(
-                    new BooleanAttribute("boo", true),
-                    RuleConstants.ComparatorOperator.EQUALS,
-                    new BooleanAttribute("foo", true)
+                    new BooleanAttribute("foo", true), RuleConstants.ComparatorOperator.EQUALS, new BooleanAttribute("boo", true)
             );
         });
 
@@ -40,9 +36,7 @@ class BooleanAttributeEvaluatorServiceTest {
     void evaluateValueMismatch() throws MatcherException {
         assertEquals(false,
                 attributeEvaluatorService.evaluate(
-                        new BooleanAttribute("foo", false),
-                        RuleConstants.ComparatorOperator.EQUALS,
-                        new BooleanAttribute("foo", true)
+                        new BooleanAttribute("foo", true), RuleConstants.ComparatorOperator.EQUALS, new BooleanAttribute("foo", false)
                 )
         );
     }
@@ -53,9 +47,7 @@ class BooleanAttributeEvaluatorServiceTest {
     void evaluateNotEquals() throws MatcherException {
         assertEquals(true,
                 attributeEvaluatorService.evaluate(
-                        new BooleanAttribute("foo", true),
-                        RuleConstants.ComparatorOperator.NOT_EQUALS,
-                        new BooleanAttribute("foo", false)
+                        new BooleanAttribute("foo", false), RuleConstants.ComparatorOperator.NOT_EQUALS, new BooleanAttribute("foo", true)
                 )
         );
     }
@@ -65,9 +57,7 @@ class BooleanAttributeEvaluatorServiceTest {
 
         MatcherException thrown = Assertions.assertThrows(MatcherException.class, () -> {
             attributeEvaluatorService.evaluate(
-                    new BooleanAttribute("boo", true),
-                    RuleConstants.ComparatorOperator.NOT_EQUALS,
-                    new BooleanAttribute("foo", true)
+                    new BooleanAttribute("foo", true), RuleConstants.ComparatorOperator.NOT_EQUALS, new BooleanAttribute("boo", true)
             );
         });
     }
@@ -76,9 +66,7 @@ class BooleanAttributeEvaluatorServiceTest {
     void evaluateValueMismatchNotEquals() throws MatcherException {
         assertEquals(true,
                 attributeEvaluatorService.evaluate(
-                        new BooleanAttribute("foo", false),
-                        RuleConstants.ComparatorOperator.NOT_EQUALS,
-                        new BooleanAttribute("foo", true)
+                        new BooleanAttribute("foo", true), RuleConstants.ComparatorOperator.NOT_EQUALS, new BooleanAttribute("foo", false)
                 )
         );
     }

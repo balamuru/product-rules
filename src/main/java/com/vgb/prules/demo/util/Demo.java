@@ -1,4 +1,4 @@
-package com.vgb.prules.demo.demo;
+package com.vgb.prules.demo.util;
 
 import com.vgb.prules.demo.buyer.domain.ProductMatchResult;
 import com.vgb.prules.demo.buyer.engine.MatchingEngine;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.vgb.prules.demo.demo.DemoDataUtils.*;
+import static com.vgb.prules.demo.util.DemoDataUtils.*;
 
 @Component
 public class Demo {
