@@ -5,7 +5,7 @@ import com.vgb.prules.demo.common.domain.attribute.Attribute;
 import java.util.Objects;
 
 public class Condition {
-    private  final RuleConstants.ComparatorOperator comparatorOperator;
+    private final RuleConstants.ComparatorOperator comparatorOperator;
     private final Attribute targetAttribute;
 
     public Condition(RuleConstants.ComparatorOperator comparatorOperator, Attribute targetAttribute) {

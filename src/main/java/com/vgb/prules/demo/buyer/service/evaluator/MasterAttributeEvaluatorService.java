@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service("master-attribute-evaluator-service")
-public class MasterAttributeEvaluatorService implements AttributeEvaluatorService<Attribute>{
+public class MasterAttributeEvaluatorService implements AttributeEvaluatorService<Attribute> {
 
     final Logger log = LoggerFactory.getLogger(this.getClass());
     @Autowired

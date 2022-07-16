@@ -17,7 +17,6 @@ import java.util.List;
 
 import static com.vgb.prules.demo.demo.DemoDataUtils.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(MockitoExtension.class)
 class MatchingEngineTest {

@@ -21,7 +21,7 @@ public class MatchingEngine {
     @Autowired
     private ProductService productService;
 
-    public List<ProductMatchResult>  match() {
+    public List<ProductMatchResult> match() {
         final Collection<Product> products = Collections.synchronizedCollection(productService.getProducts());
         return products.parallelStream()
                 .map(product -> productMatchingService.match(product))

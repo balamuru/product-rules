@@ -11,9 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import static com.vgb.prules.demo.buyer.domain.RuleConstants.ComparatorOperator.*;
-import static com.vgb.prules.demo.buyer.domain.RuleConstants.ComparatorOperator.EQUALS;
 import static com.vgb.prules.demo.common.domain.attribute.AttributeConstants.*;
-import static com.vgb.prules.demo.common.domain.attribute.AttributeConstants.QTY;
 
 public class DemoDataUtils {
     public static final Product PRODUCT1 = new Product(null, new HashMap<>() {{

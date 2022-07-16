@@ -16,7 +16,7 @@ public class NumberAttributeEvaluatorService implements AttributeEvaluatorServic
             case GREATER_THAN:
                 return actualAttribute.getValue() > conditionAttribute.getValue();
             case LESS_THAN:
-                return  actualAttribute.getValue() < conditionAttribute.getValue();
+                return actualAttribute.getValue() < conditionAttribute.getValue();
             default:
                 throw new UnsupportedOperationException("Unsupported operator: " + comparatorOperator);
         }

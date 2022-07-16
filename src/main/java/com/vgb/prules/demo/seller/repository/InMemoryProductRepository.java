@@ -14,6 +14,7 @@ public class InMemoryProductRepository implements ProductRepository {
         product.setId(UUID.randomUUID().toString());
         productMap.put(product.getId(), product);
     }
+
     @Override
     public Collection<Product> getProducts() {
         return Collections.unmodifiableCollection(productMap.values());
@@ -21,7 +22,7 @@ public class InMemoryProductRepository implements ProductRepository {
 
     @Override
     public void deleteAll() {
-       productMap.clear();
+        productMap.clear();
     }
 
 

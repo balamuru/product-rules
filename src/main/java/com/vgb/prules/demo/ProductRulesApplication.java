@@ -10,15 +10,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class ProductRulesApplication implements ApplicationRunner {
 
-	@Autowired
-	Demo demo;
-	public static void main(String[] args) {
-		SpringApplication.run(ProductRulesApplication.class, args);
-	}
+    @Autowired
+    Demo demo;
 
-	@Override
-	public void run(ApplicationArguments args) throws Exception {
-		demo.init();
-		demo.run();
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(ProductRulesApplication.class, args);
+    }
+
+    @Override
+    public void run(ApplicationArguments args) throws Exception {
+        demo.init();
+        demo.run();
+    }
 }

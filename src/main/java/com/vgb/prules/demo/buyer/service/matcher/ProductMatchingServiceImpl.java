@@ -32,6 +32,7 @@ public class ProductMatchingServiceImpl implements ProductMatchingService {
     @Autowired
     @Qualifier("master-attribute-evaluator-service")
     private AttributeEvaluatorService attributeEvaluatorService;
+
     @Override
     public ProductMatchResult match(Product product) {
         try {

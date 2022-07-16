@@ -17,7 +17,6 @@ import static com.vgb.prules.demo.demo.DemoDataUtils.*;
 public class Demo {
 
 
-
     @Autowired
     private ProductService productService;
 
@@ -40,7 +39,7 @@ public class Demo {
         System.err.println();
         System.err.println("Total price of all products, chosen at quantity 1 each): " + totalPrice);
         System.err.println("Number of distinct products that pass the conditional filter: " + numberOfMatchedProducts);
-        System.err.println("Average price of products: " + (numberOfMatchedProducts == 0 ? 0 : totalPrice/numberOfMatchedProducts));
+        System.err.println("Average price of products: " + (numberOfMatchedProducts == 0 ? 0 : totalPrice / numberOfMatchedProducts));
     }
 
 
