@@ -6,6 +6,10 @@ To implement a simple rules based scoring system for products. Detailed requirem
 ## Design Tasks
 ### Draw a rough UML diagram showing the classes for the objects described above, and in particular rules and conditions. See the sample UML for product below.
 #### Domain Class Diagram
+```plantuml
+!include https://github.com/balamuru/product-rules/blob/master/docs/uml/class.puml
+```
+
 
 ### Write out, in code or psuedocode, a function that will calculate the scores, and the total and average prices for the products.
 TODO
