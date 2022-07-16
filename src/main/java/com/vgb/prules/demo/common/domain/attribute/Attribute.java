@@ -7,8 +7,6 @@ public interface Attribute<T> extends Serializable {
 
     T getValue();
 
-    boolean matches(T value);
-
     AttributeConstants.AttributeType getAttributeType();
 
 
