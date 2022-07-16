@@ -5,7 +5,7 @@ To implement a simple rules based scoring system for products. Detailed requirem
 
 ## Design Tasks
 ### Draw a rough UML diagram showing the classes for the objects described above, and in particular rules and conditions. See the sample UML for product below.
-TODO
+#### Domain Class Diagram
 
 ### Write out, in code or psuedocode, a function that will calculate the scores, and the total and average prices for the products.
 TODO
@@ -24,10 +24,10 @@ Some notable points key to the implementation are:
 * Products are filtered out based on a minimum percentage of successful conditions for a product
 * Map based in-memory data repositories are used for demo purposes. In real life, these repositories would probably be backed by a more robust datastore
 * Unclear on what the query parameters are to co-relate documents and rules, so I chose to match rules with products based on the product name.
-  * Several alternatives are possible such as
-    * match by product category
-    * define general rules that are not product specific
-    * In any case, I understood the intent of the exercise is for the seller to find matching product items given that they "know" what product names they are searching for and devise the rules accordingly.
+* Several alternatives are possible such as
+  * match by product category
+  * define general rules that are not product specific
+  * In any case, I understood the intent of the exercise is for the seller to find matching product items given that they "know" what product names they are searching for and devise the rules accordingly.
 
 
 ### Criteria

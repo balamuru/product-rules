@@ -1,0 +1,35 @@
+@startuml
+
+title Relationships - Class Diagram
+
+class Product {
+	Map<String, Attribute>
+}
+Interface Attribute<T> {
+	String name
+	T value
+
+}
+class BooleanAttribute
+class EnumeratedAttribute
+class NumberAttribute
+class StringAttribute
+
+class Rule {
+	List<Condition>
+}
+class Condition {
+	ComparatorOperator ;
+  Attribute ;
+}
+
+Rule"1" *-right- "n" Condition
+Condition"1" *-right- "1" Attribute
+
+
+Product "1" *-left- "n" Attribute
+Attribute<|-up- BooleanAttribute
+Attribute<|-up- EnumeratedAttribute
+Attribute<|-down- NumberAttribute
+Attribute<|-down- StringAttribute
+@enduml
