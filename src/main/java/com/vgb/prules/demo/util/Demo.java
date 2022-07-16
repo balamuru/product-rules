@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static com.vgb.prules.demo.util.DemoDataUtils.*;
 
@@ -32,15 +31,34 @@ public class Demo {
     }
 
     public void run() {
+        System.err.println("All Products:");
+        productService.getProducts().forEach(product -> System.err.println(product));
         final List<ProductMatchResult> matchedProducts = matchingEngine.match();
+        System.err.println();
         System.err.println("Matched Products:");
         matchedProducts.forEach(productMatchResult -> System.err.println(productMatchResult));
-        final Double totalPrice = matchedProducts.stream().map(productMatchResult -> productMatchResult.getPrice()).collect(Collectors.summingDouble(value -> value));
+//        final Double totalPriceUsingSingleInstanceOfProduct = matchedProducts.stream().map(productMatchResult -> productMatchResult.getPrice()).collect(Collectors.summingDouble(value -> value));
+//        final Double totalPrice = matchedProducts.stream().map(productMatchResult -> productMatchResult.getPrice()).collect(Collectors.summingDouble(value -> value));
+
+//        matchedProducts.stream().map(productMatchResult -> productMatchResult.getPrice()*productMatchResult.getQty()).
+        final AverageDetailsHelper averageDetailsHelper = new AverageDetailsHelper();
+        matchedProducts.forEach(productMatchResult -> {
+            averageDetailsHelper.accumulate(productMatchResult.getPrice(), productMatchResult.getQty());
+        });
+
         final int numberOfMatchedProducts = matchedProducts.size();
         System.err.println();
-        System.err.println("Total price of all products, chosen at quantity 1 each): " + totalPrice);
-        System.err.println("Number of distinct products that pass the conditional filter: " + numberOfMatchedProducts);
-        System.err.println("Average price of products: " + (numberOfMatchedProducts == 0 ? 0 : totalPrice / numberOfMatchedProducts));
+        System.err.println("Distinct Averages");
+        System.err.println("Total price of all distinct products: " + averageDetailsHelper.getDistinctPriceSum());
+        System.err.println("Number of distinct products that pass the conditional filter: " + averageDetailsHelper.getDistinctQty());
+        System.err.println("Average price of distinct products: " + averageDetailsHelper.distinctPriceAverage());
+
+        System.err.println();
+        System.err.println("Weighted Averages");
+        System.err.println("Total price of all products: " + averageDetailsHelper.getWeightedSPriceSum());
+        System.err.println("Number of products that pass the conditional filter: " + averageDetailsHelper.getTotalQty());
+        System.err.println("Average weighted price of products: " + averageDetailsHelper.weightedPriceAverage());
+
     }
 
 
@@ -61,12 +79,45 @@ public class Demo {
 
         //add some dummy data
         PRODUCTS.forEach(product -> productService.addProduct(product));
-//        productService.addProduct(PRODUCT1);
-//        productService.addProduct(PRODUCT2);
-//        productService.addProduct(PRODUCT3);
-//        productService.addProduct(PRODUCT4);
 
     }
 
+    private static class AverageDetailsHelper {
+        private float weightedSPriceSum = 0;
+        private long totalQty = 0;
+        private float distinctPriceSum = 0;
+        private long distinctQty = 0;
+
+        public void accumulate(float price, int qty) {
+            weightedSPriceSum+=price*qty;
+            totalQty+=qty;
+            distinctPriceSum+=price;
+            distinctQty+=1;
+        }
+
+        public float weightedPriceAverage() {
+            return totalQty == 0 ? 0 : weightedSPriceSum/totalQty;
+        }
+
+        public float distinctPriceAverage() {
+            return distinctQty == 0 ? 0 : distinctPriceSum/distinctQty;
+        }
+
+        public float getWeightedSPriceSum() {
+            return weightedSPriceSum;
+        }
+
+        public long getTotalQty() {
+            return totalQty;
+        }
+
+        public float getDistinctPriceSum() {
+            return distinctPriceSum;
+        }
+
+        public long getDistinctQty() {
+            return distinctQty;
+        }
+    }
 
 }

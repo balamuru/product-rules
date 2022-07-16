@@ -11,6 +11,7 @@ To implement a simple rules based scoring system for products. Detailed requirem
 
 
 ### Write out, in code or psuedocode, a function that will calculate the scores, and the total and average prices for the products.
+#### Matching Algorithm
 ```
 for each product in products
   find rules matching this product
@@ -25,8 +26,13 @@ for each product in products
   else
     record 0 score for product
   
-  return results > suucess  threshold  
+  return product match results > success threshold  
    
+```
+
+#### Scoring Algorithm
+```
+
 ```
 TODO
 
@@ -51,7 +57,50 @@ Some notable points key to the implementation are:
 
 
 ### Criteria
-### Make sure your solution is runnable from the command line via your tool of choice.
-TODO: build and execution instructions
+#### Make sure your solution is runnable from the command line via your tool of choice.
+##### Build
+* Build 
+```
+cd <project-dir>
+mvn clean package
+```
+* Execute
+```
+cd target
+mvn run
+java -jar  product-rules-0.0.1-SNAPSHOT.jar 
+```
 #### The program must print out the total and average prices that score sufficiently highly when run from the command line.
-TODO: sample output / explanation
+* Dump all products for demonstrations' sake
+```
+All Products:
+Product{id='658748d0-6389-4554-a702-e063556fb385', attributeMap={color=StringAttribute{name='color', value=Blue}, price=NumberAttribute{name='price', value=17.75}, qty=NumberAttribute{name='qty', value=1000.0}, name=StringAttribute{name='name', value=Nike TShirt}, weight=NumberAttribute{name='weight', value=5.0}, type=AbstractAttribute{name='type', value=CLOTHING}}}
+Product{id='276ccd4d-306b-4fa3-88f3-3029f1f0538a', attributeMap={color=StringAttribute{name='color', value=Red}, price=NumberAttribute{name='price', value=40.75}, qty=NumberAttribute{name='qty', value=5000.0}, name=StringAttribute{name='name', value=Nike TShirt}, weight=NumberAttribute{name='weight', value=5.0}, type=AbstractAttribute{name='type', value=CLOTHING}}}
+Product{id='7efcd5ed-c487-4ad0-bf51-fc61d920fd9a', attributeMap={color=StringAttribute{name='color', value=Blue}, price=NumberAttribute{name='price', value=10.0}, qty=NumberAttribute{name='qty', value=2000.0}, name=StringAttribute{name='name', value=Reebok Shoe}, weight=NumberAttribute{name='weight', value=8.0}, type=AbstractAttribute{name='type', value=FOOTWEAR}}}
+Product{id='175426ec-eb07-4720-9db4-0329f7f2e5e9', attributeMap={color=StringAttribute{name='color', value=Yellow}, price=NumberAttribute{name='price', value=100.0}, qty=NumberAttribute{name='qty', value=1.0}, name=StringAttribute{name='name', value=Golden Goose Feather}, weight=NumberAttribute{name='weight', value=0.1}, type=AbstractAttribute{name='type', value=MISC}}}
+Product{id='f55e08d4-49ee-41cd-9914-0829b836b73a', attributeMap={color=StringAttribute{name='color', value=Yellow}, price=NumberAttribute{name='price', value=1.0}, qty=NumberAttribute{name='qty', value=10000.0}, name=StringAttribute{name='name', value=Cheezy Bread}, weight=NumberAttribute{name='weight', value=1.0}, type=AbstractAttribute{name='type', value=FOOD}, fda-approved=BooleanAttribute{name='fda-approved', value=false}}}
+
+```
+* 3 out of 4 products passed the threshold filter
+```
+Matched Products:
+ProductMatchResult{productId='658748d0-6389-4554-a702-e063556fb385', productName='Nike TShirt', qty=1000, price=17.75, match=true, percentConditionsSatisfied=80.0, weightedScore=350.0}
+ProductMatchResult{productId='175426ec-eb07-4720-9db4-0329f7f2e5e9', productName='Golden Goose Feather', qty=1, price=100.0, match=true, percentConditionsSatisfied=66.666664, weightedScore=66.0}
+ProductMatchResult{productId='f55e08d4-49ee-41cd-9914-0829b836b73a', productName='Cheezy Bread', qty=10000, price=1.0, match=true, percentConditionsSatisfied=100.0, weightedScore=-800.0}```
+```
+
+* Averages considering distinct items
+```
+Distinct Averages
+Total price of all distinct products: 118.75
+Number of distinct products that pass the conditional filter: 3
+Average price of distinct products: 39.583332
+```
+
+* Weighted averages considering all instances of items
+```
+Weighted Averages
+Total price of all products: 27850.0
+Number of products that pass the conditional filter: 11001
+Average weighted price of products: 2.531588
+```
