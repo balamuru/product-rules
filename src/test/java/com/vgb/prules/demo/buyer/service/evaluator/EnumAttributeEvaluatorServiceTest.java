@@ -2,7 +2,6 @@ package com.vgb.prules.demo.buyer.service.evaluator;
 
 import com.vgb.prules.demo.buyer.domain.RuleConstants;
 import com.vgb.prules.demo.buyer.exception.MatcherException;
-import com.vgb.prules.demo.common.domain.attribute.BooleanAttribute;
 import com.vgb.prules.demo.common.domain.attribute.EnumeratedAttribute;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
