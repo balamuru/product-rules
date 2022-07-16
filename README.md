@@ -14,7 +14,7 @@ TODO
 #### Project Scope / Assumptions
 Several assumptions were made. The scope of the Questions/Answers/Assumptions is captured [here](docs/questions-and-assumptions.md)
 Some notable points key to the implementation are:
-* The project will be implemented as a simple self contained Jave/Spring demo
+* The project will be implemented as a simple self-contained Jave/Spring demo
 * The demo does not support customizable data / rule input. The demo dataset is hardcoded.
 * Possible input schemes for rules could be
   * flat rules (1 per line) + a parser
@@ -31,5 +31,7 @@ Some notable points key to the implementation are:
 
 
 ### Criteria
-* Make sure your solution is runnable from the command line via your tool of choice.
-* The program must print out the total and average prices that score sufficiently highly when run from the command line.
+### Make sure your solution is runnable from the command line via your tool of choice.
+TODO: build and execution instructions
+#### The program must print out the total and average prices that score sufficiently highly when run from the command line.
+TODO: sample output / explanation
