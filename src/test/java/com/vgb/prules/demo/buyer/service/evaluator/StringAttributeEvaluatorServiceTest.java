@@ -2,12 +2,11 @@ package com.vgb.prules.demo.buyer.service.evaluator;
 
 import com.vgb.prules.demo.buyer.domain.RuleConstants;
 import com.vgb.prules.demo.buyer.exception.MatcherException;
-import com.vgb.prules.demo.common.domain.attribute.NumberAttribute;
 import com.vgb.prules.demo.common.domain.attribute.StringAttribute;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class StringAttributeEvaluatorServiceTest {
 

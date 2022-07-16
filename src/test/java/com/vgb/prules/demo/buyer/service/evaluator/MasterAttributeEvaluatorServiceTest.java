@@ -2,7 +2,10 @@ package com.vgb.prules.demo.buyer.service.evaluator;
 
 import com.vgb.prules.demo.buyer.domain.RuleConstants;
 import com.vgb.prules.demo.buyer.exception.MatcherException;
-import com.vgb.prules.demo.common.domain.attribute.*;
+import com.vgb.prules.demo.common.domain.attribute.BooleanAttribute;
+import com.vgb.prules.demo.common.domain.attribute.EnumeratedAttribute;
+import com.vgb.prules.demo.common.domain.attribute.NumberAttribute;
+import com.vgb.prules.demo.common.domain.attribute.StringAttribute;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,10 +15,9 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import static com.vgb.prules.demo.common.domain.attribute.AttributeConstants.ProductType.CLOTHING;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(MockitoExtension.class)
 class MasterAttributeEvaluatorServiceTest {

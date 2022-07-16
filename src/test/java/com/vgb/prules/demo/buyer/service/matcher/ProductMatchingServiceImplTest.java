@@ -3,10 +3,7 @@ package com.vgb.prules.demo.buyer.service.matcher;
 import com.vgb.prules.demo.buyer.domain.ProductMatchResult;
 import com.vgb.prules.demo.buyer.exception.MatcherException;
 import com.vgb.prules.demo.buyer.service.ProductRulesService;
-import com.vgb.prules.demo.buyer.service.evaluator.BooleanAttributeEvaluatorService;
-import com.vgb.prules.demo.buyer.service.evaluator.MasterAttributeEvaluatorService;
-import com.vgb.prules.demo.buyer.service.evaluator.NumberAttributeEvaluatorService;
-import com.vgb.prules.demo.buyer.service.evaluator.StringAttributeEvaluatorService;
+import com.vgb.prules.demo.buyer.service.evaluator.*;
 import com.vgb.prules.demo.common.domain.Product;
 import com.vgb.prules.demo.seller.service.ProductService;
 import com.vgb.prules.demo.util.DemoDataUtils;
@@ -39,6 +36,8 @@ class ProductMatchingServiceImplTest {
     private BooleanAttributeEvaluatorService booleanAttributeEvaluatorService;
     @Spy
     private StringAttributeEvaluatorService stringAttributeEvaluatorService;
+    @Spy
+    private EnumAttributeEvaluatorService enumAttributeEvaluatorService;
 
     @BeforeEach
     public void init() {
@@ -73,14 +72,15 @@ class ProductMatchingServiceImplTest {
                 }});
         ProductMatchResult result = productMatchingService.match(product);
         assertEquals(product.name(), result.getProductName());
-        assertEquals(75, result.getPercentConditionsSatisfied());
+        assertEquals(80f, result.getPercentConditionsSatisfied());
         assertTrue(result.isMatch());
-        assertEquals(4, DemoDataUtils.RULE1A.getConditions().size() + DemoDataUtils.RULE1B.getConditions().size()); //4 conditions in total
+        assertEquals(5, DemoDataUtils.RULE1A.getConditions().size() + DemoDataUtils.RULE1B.getConditions().size()); //4 conditions in total
 
         Mockito.verify(productRulesService).getRuleByProductName(Mockito.any());
-        Mockito.verify(attributeEvaluatorService, Mockito.times(4)).evaluate(Mockito.any(), Mockito.any(), Mockito.any());
+        Mockito.verify(attributeEvaluatorService, Mockito.times(5)).evaluate(Mockito.any(), Mockito.any(), Mockito.any());
         Mockito.verify(numberAttributeEvaluatorService, Mockito.times(2)).evaluate(Mockito.any(), Mockito.any(), Mockito.any());
         Mockito.verify(stringAttributeEvaluatorService, Mockito.times(1)).evaluate(Mockito.any(), Mockito.any(), Mockito.any());
         Mockito.verify(booleanAttributeEvaluatorService, Mockito.never()).evaluate(Mockito.any(), Mockito.any(), Mockito.any()); //attribute was not present in target product, so never evaluated (still tagged in master evaluated service once though)
+        Mockito.verify(enumAttributeEvaluatorService, Mockito.times(1)).evaluate(Mockito.any(), Mockito.any(), Mockito.any());
     }
 }
