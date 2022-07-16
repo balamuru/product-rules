@@ -7,7 +7,6 @@ import com.vgb.prules.demo.seller.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,6 +14,7 @@ import static com.vgb.prules.demo.util.DemoDataUtils.*;
 
 @Component
 public class Demo {
+
 
 
     @Autowired
@@ -48,14 +48,9 @@ public class Demo {
         productRulesService.deleteAll();
 
         //add some dummy data
-        productRulesService.addProductRules("Nike TShirt", new ArrayList<>() {{
-            add(RULE1A);
-            add(RULE1B);
-        }});
-
-        productRulesService.addProductRules("Golden Goose Feather", new ArrayList<>() {{
-            add(RULE2);
-        }});
+        productRulesService.addProductRules("Nike TShirt", RULES_FOR_PRODUCT_TSHIRT);
+        productRulesService.addProductRules("Golden Goose Feather", RULES_FOR_PRODUCT_FEATHER);
+        productRulesService.addProductRules("Cheezy Bread", RULES_FOR_PRODUCT_BREAD);
 
     }
 
@@ -64,10 +59,12 @@ public class Demo {
         productService.deleteAll();
 
         //add some dummy data
-        productService.addProduct(PRODUCT1);
-        productService.addProduct(PRODUCT2);
-        productService.addProduct(PRODUCT3);
-        productService.addProduct(PRODUCT4);
+        PRODUCTS.forEach(product -> productService.addProduct(product));
+//        productService.addProduct(PRODUCT1);
+//        productService.addProduct(PRODUCT2);
+//        productService.addProduct(PRODUCT3);
+//        productService.addProduct(PRODUCT4);
+
     }
 
 

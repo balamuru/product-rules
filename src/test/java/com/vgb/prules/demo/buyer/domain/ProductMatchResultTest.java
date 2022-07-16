@@ -12,7 +12,7 @@ class ProductMatchResultTest {
     @BeforeEach
     void init() {
         productMatchResult = new ProductMatchResult(
-                "aaaa", "silly socks", 4, 10.50f, true, 70);
+                "aaaa", "silly socks", 4, 10.50f, true, 70, 50);
 
     }
 
@@ -43,7 +43,12 @@ class ProductMatchResultTest {
 
     @Test
     void getPercentScore() {
-        assertEquals(70, productMatchResult.getPercentScore());
+        assertEquals(70, productMatchResult.getPercentConditionsSatisfied());
+    }
+
+    @Test
+    void getWeighedScore() {
+        assertEquals(50, productMatchResult.getScore());
     }
 
     @Test

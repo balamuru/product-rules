@@ -5,20 +5,27 @@ public class ProductMatchResult {
     private String productName;
     private float qty;
     private float price;
-    private int percentScore;
     private boolean match;
+    private int percentConditionsSatisfied;
+    private int score;
 
-    public ProductMatchResult(String productId, String productName, float qty, float price, boolean match, int percentScore) {
+
+    public ProductMatchResult(String productId, String productName, float qty, float price, boolean match, int percentScore, int score) {
         this.productId = productId;
         this.productName = productName;
         this.qty = qty;
         this.price = price;
         this.match = match;
-        this.percentScore = percentScore;
+        this.percentConditionsSatisfied = percentScore;
+        this.score = score;
     }
 
     public String getProductId() {
         return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
     public String getProductName() {
@@ -37,8 +44,12 @@ public class ProductMatchResult {
         return match;
     }
 
-    public int getPercentScore() {
-        return percentScore;
+    public int getPercentConditionsSatisfied() {
+        return percentConditionsSatisfied;
+    }
+
+    public int getScore() {
+        return score;
     }
 
     @Override
@@ -48,8 +59,9 @@ public class ProductMatchResult {
                 ", productName='" + productName + '\'' +
                 ", qty=" + qty +
                 ", price=" + price +
-                ", percentScore=" + percentScore +
                 ", match=" + match +
+                ", percentConditionsSatisfied=" + percentConditionsSatisfied +
+                ", weightedScore=" + score +
                 '}';
     }
 }

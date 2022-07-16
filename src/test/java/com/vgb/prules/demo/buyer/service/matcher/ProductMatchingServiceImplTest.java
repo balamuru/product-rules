@@ -54,7 +54,7 @@ class ProductMatchingServiceImplTest {
                 .thenReturn(new ArrayList<>());
         ProductMatchResult result = productMatchingService.match(product);
         assertEquals(product.name(), result.getProductName());
-        assertEquals(0, result.getPercentScore());
+        assertEquals(0, result.getPercentConditionsSatisfied());
         assertFalse(result.isMatch());
 
         Mockito.verify(productRulesService).getRuleByProductName(Mockito.any());
@@ -73,7 +73,7 @@ class ProductMatchingServiceImplTest {
                 }});
         ProductMatchResult result = productMatchingService.match(product);
         assertEquals(product.name(), result.getProductName());
-        assertEquals(75, result.getPercentScore());
+        assertEquals(75, result.getPercentConditionsSatisfied());
         assertTrue(result.isMatch());
         assertEquals(4, DemoDataUtils.RULE1A.getConditions().size() + DemoDataUtils.RULE1B.getConditions().size()); //4 conditions in total
 

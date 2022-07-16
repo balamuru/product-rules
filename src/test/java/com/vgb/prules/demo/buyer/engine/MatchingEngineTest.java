@@ -47,8 +47,8 @@ class MatchingEngineTest {
                         PRODUCT4.qty(),
                         PRODUCT4.price(),
                         false,
-                        40
-                ));
+                        40,
+                        10));
 
         final List<ProductMatchResult> matchedProducts = matchingEngine.match();
         assertEquals(0, matchedProducts.size());
@@ -70,8 +70,8 @@ class MatchingEngineTest {
                         PRODUCT4.qty(),
                         PRODUCT4.price(),
                         true,
-                        40
-                ));
+                        40,
+                        10));
 
         final List<ProductMatchResult> matchedProducts = matchingEngine.match();
         assertEquals(1, matchedProducts.size());
@@ -98,8 +98,8 @@ class MatchingEngineTest {
                                 PRODUCT1.qty(),
                                 PRODUCT1.price(),
                                 true,
-                                40
-                        ));
+                                40,
+                                10));
 
         Mockito.when(productMatchingService.match(PRODUCT2))
                 .thenReturn(
@@ -109,8 +109,8 @@ class MatchingEngineTest {
                                 PRODUCT2.qty(),
                                 PRODUCT2.price(),
                                 true,
-                                40
-                        ));
+                                40,
+                                10));
 
         Mockito.when(productMatchingService.match(PRODUCT3))
                 .thenReturn(
@@ -120,8 +120,8 @@ class MatchingEngineTest {
                                 PRODUCT3.qty(),
                                 PRODUCT3.price(),
                                 false,
-                                20
-                        ));
+                                20,
+                                10));
 
         Mockito.when(productMatchingService.match(PRODUCT4))
                 .thenReturn(
@@ -131,8 +131,8 @@ class MatchingEngineTest {
                                 PRODUCT4.qty(),
                                 PRODUCT4.price(),
                                 false,
-                                10
-                        ));
+                                10,
+                                10));
 
         final List<ProductMatchResult> matchedProducts = matchingEngine.match();
         assertEquals(2, matchedProducts.size()); //only 2 of the products match rules

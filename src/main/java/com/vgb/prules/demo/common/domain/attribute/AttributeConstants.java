@@ -9,6 +9,7 @@ public class AttributeConstants {
     public static final String PRICE = "price";
     public static final String QTY = "qty";
     public static final String TRENDING = "trending";
+    public static final String FDA_APPROVED = "fda-approved";
 
     public enum AttributeType {
         BOOLEAN, NUMBER, STRING
