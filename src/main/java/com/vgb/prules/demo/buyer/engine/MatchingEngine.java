@@ -17,17 +17,15 @@ public class MatchingEngine {
 
 
     @Autowired
-    ProductMatchingService productMatchingService;
+    private ProductMatchingService productMatchingService;
     @Autowired
     private ProductService productService;
 
-    public void match() {
+    public List<ProductMatchResult>  match() {
         final Collection<Product> products = Collections.synchronizedCollection(productService.getProducts());
-        final List<ProductMatchResult> matchedProducts = products.parallelStream().map(product -> productMatchingService.match(product)).filter(productMatchResult -> productMatchResult.isMatch())
+        return products.parallelStream()
+                .map(product -> productMatchingService.match(product))
+                .filter(productMatchResult -> productMatchResult.isMatch())
                 .collect(Collectors.toUnmodifiableList());
-
-        matchedProducts.forEach(productMatchResult -> System.err.println(productMatchResult));
     }
-
-
 }

@@ -11,5 +11,5 @@ public interface ProductService {
 
     void deleteAll();
 
-    Collection<Product> getProducts(String... productNames);
+
 }

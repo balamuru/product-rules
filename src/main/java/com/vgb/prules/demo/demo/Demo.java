@@ -1,5 +1,6 @@
 package com.vgb.prules.demo.demo;
 
+import com.vgb.prules.demo.buyer.domain.ProductMatchResult;
 import com.vgb.prules.demo.buyer.engine.MatchingEngine;
 import com.vgb.prules.demo.buyer.service.ProductRulesService;
 import com.vgb.prules.demo.seller.service.ProductService;
@@ -7,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.vgb.prules.demo.demo.DemoDataUtils.*;
 
@@ -30,7 +33,14 @@ public class Demo {
     }
 
     public void run() {
-        matchingEngine.match();
+        final List<ProductMatchResult> matchedProducts = matchingEngine.match();
+        matchedProducts.forEach(productMatchResult -> System.err.println(productMatchResult));
+        final Double totalPrice = matchedProducts.stream().map(productMatchResult -> productMatchResult.getPrice()).collect(Collectors.summingDouble(value -> value));
+        final int numberOfMatchedProducts = matchedProducts.size();
+        System.err.println();
+        System.err.println("Total price of all products, chosen at quantity 1 each): " + totalPrice);
+        System.err.println("Number of distinct products that pass the conditional filter: " + numberOfMatchedProducts);
+        System.err.println("Average price of products: " + (numberOfMatchedProducts == 0 ? 0 : totalPrice/numberOfMatchedProducts));
     }
 
 

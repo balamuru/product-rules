@@ -6,10 +6,7 @@ import java.util.Collection;
 
 public interface ProductRepository {
     void addProduct(Product product);
-
     Collection<Product> getProducts();
-
     void deleteAll();
 
-    Collection<Product> getProducts(String... productNames);
 }

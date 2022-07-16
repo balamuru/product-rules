@@ -30,7 +30,7 @@ public class MasterAttributeEvaluatorService implements AttributeEvaluatorServic
 
         //it is possible that the attribute might not exist in the document
         if (actualAttribute == null) {
-            log.info("No actual attribute found matching " + conditionAttribute);
+            log.debug("No actual attribute found matching " + conditionAttribute);
             return false;
         }
 

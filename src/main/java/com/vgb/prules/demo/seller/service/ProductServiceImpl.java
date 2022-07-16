@@ -27,10 +27,4 @@ public class ProductServiceImpl implements ProductService {
     public void deleteAll() {
         productRepository.deleteAll();
     }
-
-    @Override
-    public Collection<Product> getProducts(String... productNames) {
-        return productRepository.getProducts(productNames);
-    }
-
 }
