@@ -6,14 +6,28 @@ To implement a simple rules based scoring system for products. Detailed requirem
 ## Design Tasks
 ### Draw a rough UML diagram showing the classes for the objects described above, and in particular rules and conditions. See the sample UML for product below.
 #### Domain Class Diagram
-```plantuml
-!include https://raw.githubusercontent.com/balamuru/product-rules/master/docs/uml/class.puml
-```
 
 ![Class Diagram](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/balamuru/product-rules/master/docs/uml/class.puml)
 
 
 ### Write out, in code or psuedocode, a function that will calculate the scores, and the total and average prices for the products.
+```
+for each product in products
+  find rules matching this product
+  if matching rules found
+    for each rule in rules
+      for each condition in rules
+        if the product has an attribute whose name matches the condition name
+          evaluate the attribute against the condition
+      calculate weighted score for each rule          
+    record success threshold as (total conditions matched across all matched rules for the product) vs (total conditions across all matched rules for the product)
+    record total weighted score for the product      
+  else
+    record 0 score for product
+  
+  return results > suucess  threshold  
+   
+```
 TODO
 
 ### If you make any assumptions, write them down.
