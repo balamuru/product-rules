@@ -12,6 +12,6 @@ public class AttributeConstants {
     public static final String FDA_APPROVED = "fda-approved";
 
     public enum AttributeType {
-        BOOLEAN, NUMBER, STRING
+        BOOLEAN, NUMBER, STRING, ENUM
     }
 }
