@@ -43,4 +43,13 @@ public class Rule {
     public int hashCode() {
         return Objects.hash(maxScore, logicalOperator, conditions);
     }
+
+    @Override
+    public String toString() {
+        return "Rule{" +
+                "maxScore=" + maxScore +
+                ", logicalOperator=" + logicalOperator +
+                ", conditions=" + conditions +
+                '}';
+    }
 }

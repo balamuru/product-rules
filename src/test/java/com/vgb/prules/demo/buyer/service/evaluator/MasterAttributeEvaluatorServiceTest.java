@@ -65,7 +65,7 @@ class MasterAttributeEvaluatorServiceTest {
     }
 
     @Test
-    void evaluateMismatchingNames() throws MatcherException {
+    void evaluateMismatchingNames() {
         MatcherException thrown = Assertions.assertThrows(MatcherException.class, () -> {
             attributeEvaluatorService.evaluate(
                     new NumberAttribute("boo", 1.2f), RuleConstants.ComparatorOperator.EQUALS, new NumberAttribute("foo", 1.2f)
@@ -74,7 +74,7 @@ class MasterAttributeEvaluatorServiceTest {
     }
 
     @Test
-    void evaluateMismatchingTypes() throws MatcherException {
+    void evaluateMismatchingTypes() {
         MatcherException thrown = Assertions.assertThrows(MatcherException.class, () -> {
             attributeEvaluatorService.evaluate(
                     new BooleanAttribute("boo", true), RuleConstants.ComparatorOperator.EQUALS, new NumberAttribute("foo", 1.2f)

@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service("master-attribute-evaluator-service")
+@Service("masterAttributeEvaluatorService")
 public class MasterAttributeEvaluatorService implements AttributeEvaluatorService<Attribute> {
 
     final Logger log = LoggerFactory.getLogger(this.getClass());
