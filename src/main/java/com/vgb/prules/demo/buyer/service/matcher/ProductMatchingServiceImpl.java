@@ -45,23 +45,23 @@ public class ProductMatchingServiceImpl implements ProductMatchingService {
             List<RuleMatchResult>  ruleMatchResults = matchRules(product, conditionCount, matchedConditionCount);
 
             //calculate success metrics for all rules associated with this product
-            final int successfulConditionPercentageForAllConditionsInAllRulesForProduct
+            final float successfulConditionPercentageForAllConditionsInAllRulesForProduct
                     = conditionCount.get() == 0 ?
-                    0 : (100 * matchedConditionCount.get()) / conditionCount.get();
+                    0 : (float)(100 * matchedConditionCount.get()) / conditionCount.get();
 
             //decide if we have a match depending on if we exceed the success percentage threshold
             final boolean productMatch = successfulConditionPercentageForAllConditionsInAllRulesForProduct > successfulConditionPercentageThreshold;
 
             //calculate weighed results for this product
-            final int actualProductScore = ruleMatchResults.stream().map(result -> result.getTotalConditions() == 0 ? 0 :
-                    (result.getMaxScoreForRule()*result.getMatchedConditions())/result.getTotalConditions()).collect(Collectors.summingInt(value -> value));
+            final double actualProductScore = ruleMatchResults.stream().map(result -> result.getTotalConditions() == 0 ? 0 :
+                    (result.getMaxScoreForRule()*result.getMatchedConditions())/result.getTotalConditions()).collect(Collectors.summingDouble(value -> (double)value));
 
-            return new ProductMatchResult(product.getId(), product.name(), product.qty(), product.price(), productMatch, successfulConditionPercentageForAllConditionsInAllRulesForProduct, actualProductScore);
+            return new ProductMatchResult(product.getId(), product.name(), (int) product.qty(), product.price(), productMatch, successfulConditionPercentageForAllConditionsInAllRulesForProduct, (float) actualProductScore);
         } catch (Exception e) {
             log.error(e.getMessage());
             //failure, return a false result with 0 score
 
-            return new ProductMatchResult(product.getId(), product.name(), product.qty(), product.price(), false, 0, 0);
+            return new ProductMatchResult(product.getId(), product.name(), (int) product.qty(), product.price(), false, 0, 0);
         }
     }
 
@@ -70,12 +70,9 @@ public class ProductMatchingServiceImpl implements ProductMatchingService {
         //get rules for product
         final Collection<Rule> rules = productRulesService.getRuleByProductName(product.name());
         //match product attributes for each condition associated with this rule
-
-        //rules.parallelStream().forEach(rule -> rule.getConditions().parallelStream().forEach(targetCondition -> matchConditionAndIncrementCounts(product, targetCondition, conditionCount, matchedConditionCount)));
-
         //accumulate total count for product
         //record result
-        rules.parallelStream().forEach(rule -> {
+        rules.stream().forEach(rule -> {
             final List<Condition> targetConditions = rule.getConditions();
             AtomicInteger totalConditionsForRule = new AtomicInteger(rule.getConditions().size());
             AtomicInteger matchedConditionsForRule = new AtomicInteger(0);
@@ -99,11 +96,14 @@ public class ProductMatchingServiceImpl implements ProductMatchingService {
         final Attribute actualAttribute = product.getAttribute(targetAttribute.getName());
 
         //match the actual condition
-        boolean matched = isMatched(actualAttribute, targetCondition.getComparatorOperator(), targetAttribute);
+        final boolean matched = isMatched(actualAttribute, targetCondition.getComparatorOperator(), targetAttribute);
+
         if (matched) {
-            log.debug("Matched comparison with actual attribute: " + actualAttribute + " vs target condition: " + targetCondition + " for product " + product);
+            log.debug("Matched comparison " + " for product/id " + product.name()+"..."+product.getId() +
+                    " with actual attribute: " + actualAttribute + " vs target condition: " + targetCondition + " for product " + product);
         } else {
-            log.debug("Mismatched comparison with actual attribute: " + actualAttribute + " vs target condition: " + targetCondition + " for product " + product);
+            log.debug("Mismatched comparison " + " for product/id " + product.name()+"..."+product.getId() +
+                    " with actual attribute: " + actualAttribute + " vs target condition: " + targetCondition + " for product " + product);
         }
         return matched;
     }

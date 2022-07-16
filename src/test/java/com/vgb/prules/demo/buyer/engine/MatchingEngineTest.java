@@ -44,7 +44,7 @@ class MatchingEngineTest {
                 .thenReturn(new ProductMatchResult(
                         PRODUCT4.getId(),
                         PRODUCT4.name(),
-                        PRODUCT4.qty(),
+                        (int) PRODUCT4.qty(),
                         PRODUCT4.price(),
                         false,
                         40,
@@ -67,7 +67,7 @@ class MatchingEngineTest {
                 .thenReturn(new ProductMatchResult(
                         PRODUCT4.getId(),
                         PRODUCT4.name(),
-                        PRODUCT4.qty(),
+                        (int) PRODUCT4.qty(),
                         PRODUCT4.price(),
                         true,
                         40,
@@ -95,7 +95,7 @@ class MatchingEngineTest {
                         new ProductMatchResult(
                                 PRODUCT1.getId(),
                                 PRODUCT1.name(),
-                                PRODUCT1.qty(),
+                                (int) PRODUCT1.qty(),
                                 PRODUCT1.price(),
                                 true,
                                 40,
@@ -106,7 +106,7 @@ class MatchingEngineTest {
                         new ProductMatchResult(
                                 PRODUCT2.getId(),
                                 PRODUCT2.name(),
-                                PRODUCT2.qty(),
+                                (int) PRODUCT2.qty(),
                                 PRODUCT2.price(),
                                 true,
                                 40,
@@ -117,7 +117,7 @@ class MatchingEngineTest {
                         new ProductMatchResult(
                                 PRODUCT3.getId(),
                                 PRODUCT3.name(),
-                                PRODUCT3.qty(),
+                                (int) PRODUCT3.qty(),
                                 PRODUCT3.price(),
                                 false,
                                 20,
@@ -128,7 +128,7 @@ class MatchingEngineTest {
                         new ProductMatchResult(
                                 PRODUCT4.getId(),
                                 PRODUCT4.name(),
-                                PRODUCT4.qty(),
+                                (int) PRODUCT4.qty(),
                                 PRODUCT4.price(),
                                 false,
                                 10,

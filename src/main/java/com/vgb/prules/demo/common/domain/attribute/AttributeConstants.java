@@ -14,4 +14,8 @@ public class AttributeConstants {
     public enum AttributeType {
         BOOLEAN, NUMBER, STRING, ENUM
     }
+
+    public enum ProductType {
+        CLOTHING, FOOTWEAR, FOOD, MISC
+    }
 }

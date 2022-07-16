@@ -3,14 +3,14 @@ package com.vgb.prules.demo.buyer.domain;
 public class ProductMatchResult {
     private String productId;
     private String productName;
-    private float qty;
+    private int qty;
     private float price;
     private boolean match;
-    private int percentConditionsSatisfied;
-    private int score;
+    private float percentConditionsSatisfied;
+    private float score;
 
 
-    public ProductMatchResult(String productId, String productName, float qty, float price, boolean match, int percentScore, int score) {
+    public ProductMatchResult(String productId, String productName, int qty, float price, boolean match, float percentScore, float score) {
         this.productId = productId;
         this.productName = productName;
         this.qty = qty;
@@ -32,7 +32,7 @@ public class ProductMatchResult {
         return productName;
     }
 
-    public float getQty() {
+    public int getQty() {
         return qty;
     }
 
@@ -44,11 +44,11 @@ public class ProductMatchResult {
         return match;
     }
 
-    public int getPercentConditionsSatisfied() {
+    public float getPercentConditionsSatisfied() {
         return percentConditionsSatisfied;
     }
 
-    public int getScore() {
+    public float getScore() {
         return score;
     }
 

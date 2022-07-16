@@ -2,9 +2,7 @@ package com.vgb.prules.demo.buyer.service.evaluator;
 
 import com.vgb.prules.demo.buyer.domain.RuleConstants;
 import com.vgb.prules.demo.buyer.exception.MatcherException;
-import com.vgb.prules.demo.common.domain.attribute.BooleanAttribute;
-import com.vgb.prules.demo.common.domain.attribute.NumberAttribute;
-import com.vgb.prules.demo.common.domain.attribute.StringAttribute;
+import com.vgb.prules.demo.common.domain.attribute.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,6 +14,7 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import static com.vgb.prules.demo.common.domain.attribute.AttributeConstants.ProductType.CLOTHING;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -32,6 +31,9 @@ class MasterAttributeEvaluatorServiceTest {
 
     @Mock
     StringAttributeEvaluatorService stringAttributeEvaluatorService;
+
+    @Mock
+    EnumAttributeEvaluatorService enumAttributeEvaluatorService;
 
     @BeforeEach
     public void init() {
@@ -59,9 +61,18 @@ class MasterAttributeEvaluatorServiceTest {
     void evaluateBoolean() throws MatcherException {
         Mockito.when(booleanAttributeEvaluatorService.evaluate(Mockito.any(),Mockito.any(),Mockito.any()))
                 .thenReturn(true);
-        assertTrue(attributeEvaluatorService.evaluate(new BooleanAttribute("foo", true),
+        assertTrue(booleanAttributeEvaluatorService.evaluate(new BooleanAttribute("foo", true),
                 RuleConstants.ComparatorOperator.EQUALS, new BooleanAttribute("foo", true)));
         Mockito.verify(booleanAttributeEvaluatorService).evaluate(Mockito.any(),Mockito.any(),Mockito.any());
+    }
+
+    @Test
+    void evaluateEnum() throws MatcherException {
+        Mockito.when(enumAttributeEvaluatorService.evaluate(Mockito.any(),Mockito.any(),Mockito.any()))
+                .thenReturn(true);
+        assertTrue(attributeEvaluatorService.evaluate(new EnumeratedAttribute("foo", CLOTHING),
+                RuleConstants.ComparatorOperator.EQUALS, new EnumeratedAttribute("foo", CLOTHING)));
+        Mockito.verify(enumAttributeEvaluatorService).evaluate(Mockito.any(),Mockito.any(),Mockito.any());
     }
 
     @Test

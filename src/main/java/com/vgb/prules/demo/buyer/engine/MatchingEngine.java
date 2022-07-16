@@ -22,8 +22,11 @@ public class MatchingEngine {
     private ProductService productService;
 
     public List<ProductMatchResult> match() {
+
         final Collection<Product> products = Collections.synchronizedCollection(productService.getProducts());
-        return products.parallelStream()
+
+        //for each product, see if it matches rules setup for that particular product
+        return products.stream()
                 .map(product -> productMatchingService.match(product))
                 .filter(productMatchResult -> productMatchResult.isMatch())
                 .collect(Collectors.toUnmodifiableList());

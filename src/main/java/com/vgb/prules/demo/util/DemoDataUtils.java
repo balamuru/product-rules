@@ -4,6 +4,7 @@ import com.vgb.prules.demo.buyer.domain.Condition;
 import com.vgb.prules.demo.buyer.domain.Rule;
 import com.vgb.prules.demo.common.domain.Product;
 import com.vgb.prules.demo.common.domain.attribute.BooleanAttribute;
+import com.vgb.prules.demo.common.domain.attribute.EnumeratedAttribute;
 import com.vgb.prules.demo.common.domain.attribute.NumberAttribute;
 import com.vgb.prules.demo.common.domain.attribute.StringAttribute;
 
@@ -13,13 +14,14 @@ import java.util.List;
 
 import static com.vgb.prules.demo.buyer.domain.RuleConstants.ComparatorOperator.*;
 import static com.vgb.prules.demo.common.domain.attribute.AttributeConstants.*;
+import static com.vgb.prules.demo.common.domain.attribute.AttributeConstants.ProductType.*;
 
 public class DemoDataUtils {
 
 
     public static final Product PRODUCT1 = new Product(null, new HashMap<>() {{
         put(NAME, new StringAttribute(NAME, "Nike TShirt"));
-        put(TYPE, new StringAttribute(TYPE, "Clothing"));
+        put(TYPE, new EnumeratedAttribute(TYPE, CLOTHING));
         put(COLOR, new StringAttribute(COLOR, "Blue"));
         put(WEIGHT, new NumberAttribute(WEIGHT, 5));
         put(PRICE, new NumberAttribute(PRICE, 17.75f));
@@ -27,15 +29,15 @@ public class DemoDataUtils {
     }});
     public static final Product PRODUCT2 = new Product(null, new HashMap<>() {{
         put(NAME, new StringAttribute(NAME, "Nike TShirt"));
-        put(TYPE, new StringAttribute(TYPE, "Clothing"));
+        put(TYPE, new EnumeratedAttribute(TYPE, CLOTHING));
         put(COLOR, new StringAttribute(COLOR, "Red"));
         put(WEIGHT, new NumberAttribute(WEIGHT, 5));
-        put(PRICE, new NumberAttribute(PRICE, 10.75f));
+        put(PRICE, new NumberAttribute(PRICE, 40.75f));
         put(QTY, new NumberAttribute(QTY, 5000));
     }});
     public static final Product PRODUCT3 = new Product(null, new HashMap<>() {{
         put(NAME, new StringAttribute(NAME, "Reebok Shoe"));
-        put(TYPE, new StringAttribute(TYPE, "Footwear"));
+        put(TYPE, new EnumeratedAttribute(TYPE, FOOTWEAR));
         put(COLOR, new StringAttribute(COLOR, "Blue"));
         put(WEIGHT, new NumberAttribute(WEIGHT, 8));
         put(PRICE, new NumberAttribute(PRICE, 10));
@@ -43,7 +45,7 @@ public class DemoDataUtils {
     }});
     public static final Product PRODUCT4 = new Product(null, new HashMap<>() {{
         put(NAME, new StringAttribute(NAME, "Golden Goose Feather"));
-        put(TYPE, new StringAttribute(TYPE, "Misc"));
+        put(TYPE, new EnumeratedAttribute(TYPE, MISC));
         put(COLOR, new StringAttribute(COLOR, "Yellow"));
         put(WEIGHT, new NumberAttribute(WEIGHT, 0.1f));
         put(PRICE, new NumberAttribute(PRICE, 100));
@@ -51,7 +53,7 @@ public class DemoDataUtils {
     }});
     public static final Product PRODUCT5 = new Product(null, new HashMap<>() {{
         put(NAME, new StringAttribute(NAME, "Cheezy Bread"));
-        put(TYPE, new StringAttribute(TYPE, "Food"));
+        put(TYPE, new EnumeratedAttribute(TYPE, FOOD));
         put(COLOR, new StringAttribute(COLOR, "Yellow"));
         put(WEIGHT, new NumberAttribute(WEIGHT, 1f));
         put(PRICE, new NumberAttribute(PRICE, 1));
@@ -69,6 +71,8 @@ public class DemoDataUtils {
     public static final Rule RULE1B = new Rule(500,
             new ArrayList<>() {{
                 add(new Condition(EQUALS, new BooleanAttribute(TRENDING, true)));
+                add(new Condition(EQUALS, new EnumeratedAttribute(TYPE, CLOTHING)));
+
             }}
     );
     public static final Rule RULE2 = new Rule(

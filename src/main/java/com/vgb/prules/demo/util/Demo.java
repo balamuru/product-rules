@@ -33,6 +33,7 @@ public class Demo {
 
     public void run() {
         final List<ProductMatchResult> matchedProducts = matchingEngine.match();
+        System.err.println("Matched Products:");
         matchedProducts.forEach(productMatchResult -> System.err.println(productMatchResult));
         final Double totalPrice = matchedProducts.stream().map(productMatchResult -> productMatchResult.getPrice()).collect(Collectors.summingDouble(value -> value));
         final int numberOfMatchedProducts = matchedProducts.size();
