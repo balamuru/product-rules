@@ -1,0 +1,13 @@
+com.vgb.prules.demo
+com.vgb.prules.demo.buyer.domain
+com.vgb.prules.demo.buyer.engine
+com.vgb.prules.demo.buyer.exception
+com.vgb.prules.demo.buyer.repository
+com.vgb.prules.demo.buyer.service
+com.vgb.prules.demo.buyer.service.evaluator
+com.vgb.prules.demo.buyer.service.matcher
+com.vgb.prules.demo.common.domain
+com.vgb.prules.demo.common.domain.attribute
+com.vgb.prules.demo.seller.repository
+com.vgb.prules.demo.seller.service
+com.vgb.prules.demo.util
