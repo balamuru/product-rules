@@ -4,19 +4,35 @@ import com.vgb.prules.demo.common.domain.attribute.Attribute;
 
 import java.util.Objects;
 
+/**
+ * Rule matcher condition
+ */
 public class Condition {
     private final RuleConstants.ComparatorOperator comparatorOperator;
     private final Attribute targetAttribute;
 
+    /**
+     * Constructor
+     * @param comparatorOperator
+     * @param targetAttribute
+     */
     public Condition(RuleConstants.ComparatorOperator comparatorOperator, Attribute targetAttribute) {
         this.comparatorOperator = comparatorOperator;
         this.targetAttribute = targetAttribute;
     }
 
+    /**
+     * get comparator criteria
+     * @return
+     */
     public RuleConstants.ComparatorOperator getComparatorOperator() {
         return comparatorOperator;
     }
 
+    /**
+     * Get the attribute to match against
+     * @return
+     */
     public Attribute getTargetAttribute() {
         return targetAttribute;
     }

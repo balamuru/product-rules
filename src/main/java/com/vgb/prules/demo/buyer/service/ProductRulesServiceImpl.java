@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Product rules impl
+ */
 @Service
 public class ProductRulesServiceImpl implements ProductRulesService {
 

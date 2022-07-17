@@ -2,6 +2,10 @@ package com.vgb.prules.demo.common.domain.attribute;
 
 import java.util.Objects;
 
+/**
+ * Abstract attribute implementation
+ * @param <T>
+ */
 public abstract class AbstractAttribute<T> implements Attribute<T> {
     protected final String name;
     protected final T value;

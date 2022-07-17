@@ -7,6 +7,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+/**
+ * Numerical attribute matcher. It matches against floats (for flexibility)
+ */
 @Service
 public class NumberAttributeEvaluatorService implements AttributeEvaluatorService<NumberAttribute> {
     final Logger log = LoggerFactory.getLogger(this.getClass());

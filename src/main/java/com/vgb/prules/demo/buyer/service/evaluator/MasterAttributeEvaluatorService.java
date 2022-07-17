@@ -8,6 +8,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
+/**
+ * Facade matcher that supports all attribute evaluator matchers
+ */
 @Service("masterAttributeEvaluatorService")
 public class MasterAttributeEvaluatorService implements AttributeEvaluatorService<Attribute> {
 

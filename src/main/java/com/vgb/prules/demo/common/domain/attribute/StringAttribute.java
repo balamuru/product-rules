@@ -1,5 +1,9 @@
 package com.vgb.prules.demo.common.domain.attribute;
 
+/**
+ * String valued attribute
+ */
+
 public class StringAttribute extends AbstractAttribute<String> {
 
     public StringAttribute(String name, String value) {

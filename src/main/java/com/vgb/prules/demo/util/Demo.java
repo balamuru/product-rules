@@ -11,6 +11,9 @@ import java.util.List;
 
 import static com.vgb.prules.demo.util.DemoDataUtils.*;
 
+/**
+ * Demo driver for Product Rule matcher
+ */
 @Component
 public class Demo {
 
@@ -31,22 +34,24 @@ public class Demo {
     }
 
     public void run() {
+        //dump all products
         System.err.println("All Products:");
         productService.getProducts().forEach(product -> System.err.println(product));
+
+        //match all products
         final List<ProductMatchResult> matchedProducts = matchingEngine.match();
         System.err.println();
+
+        //print matched products
         System.err.println("Matched Products:");
         matchedProducts.forEach(productMatchResult -> System.err.println(productMatchResult));
-//        final Double totalPriceUsingSingleInstanceOfProduct = matchedProducts.stream().map(productMatchResult -> productMatchResult.getPrice()).collect(Collectors.summingDouble(value -> value));
-//        final Double totalPrice = matchedProducts.stream().map(productMatchResult -> productMatchResult.getPrice()).collect(Collectors.summingDouble(value -> value));
 
-//        matchedProducts.stream().map(productMatchResult -> productMatchResult.getPrice()*productMatchResult.getQty()).
+        //calculate stats
         final AverageDetailsHelper averageDetailsHelper = new AverageDetailsHelper();
         matchedProducts.forEach(productMatchResult -> {
             averageDetailsHelper.accumulate(productMatchResult.getPrice(), productMatchResult.getQty());
         });
 
-        final int numberOfMatchedProducts = matchedProducts.size();
         System.err.println();
         System.err.println("Distinct Averages");
         System.err.println("Total price of all distinct products: " + averageDetailsHelper.getDistinctPriceSum());

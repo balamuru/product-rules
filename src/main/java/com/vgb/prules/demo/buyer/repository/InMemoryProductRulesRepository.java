@@ -5,6 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
+/**
+ * In memory representation of product rules repository
+ */
 @Repository
 public class InMemoryProductRulesRepository implements ProductRulesRepository {
     private final Map<String, List<Rule>> productNameRulesMap = new LinkedHashMap<>();

@@ -5,6 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
+/**
+ * In memory implementation of the @{@link ProductRepository}
+ */
 @Repository
 public class InMemoryProductRepository implements ProductRepository {
     private final Map<String, Product> productMap = new LinkedHashMap<>();

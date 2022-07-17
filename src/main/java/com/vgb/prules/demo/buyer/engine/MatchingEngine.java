@@ -12,6 +12,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Entrypoint to the matching algorithm
+ */
 @Service
 public class MatchingEngine {
 
@@ -21,6 +24,13 @@ public class MatchingEngine {
     @Autowired
     private ProductService productService;
 
+    /**
+     * Get all products
+     * For each product,
+     *  If there are rules for this product,
+     *   Attempt to match
+     * @return
+     */
     public List<ProductMatchResult> match() {
 
         final Collection<Product> products = Collections.synchronizedCollection(productService.getProducts());

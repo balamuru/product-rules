@@ -1,5 +1,8 @@
 package com.vgb.prules.demo.common.domain.attribute;
 
+/**
+ * Boolean valued attribute
+ */
 public class BooleanAttribute extends AbstractAttribute<Boolean> {
 
     public BooleanAttribute(String name, boolean value) {

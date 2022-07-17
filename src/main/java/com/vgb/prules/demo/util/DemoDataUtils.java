@@ -16,6 +16,9 @@ import static com.vgb.prules.demo.buyer.domain.RuleConstants.ComparatorOperator.
 import static com.vgb.prules.demo.common.domain.attribute.AttributeConstants.*;
 import static com.vgb.prules.demo.common.domain.attribute.AttributeConstants.ProductType.*;
 
+/**
+ * Sample data for demo
+ */
 public class DemoDataUtils {
 
 

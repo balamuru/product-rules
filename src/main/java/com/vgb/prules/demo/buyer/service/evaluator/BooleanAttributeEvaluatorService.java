@@ -7,6 +7,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+/**
+ * Boolean attribute matcher
+ */
 @Service
 public class BooleanAttributeEvaluatorService implements AttributeEvaluatorService<BooleanAttribute> {
     final Logger log = LoggerFactory.getLogger(this.getClass());
