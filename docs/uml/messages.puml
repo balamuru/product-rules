@@ -1,0 +1,44 @@
+@startuml
+
+title "Messages - Sequence Diagram"
+
+'actor User
+'boundary "Web GUI" as GUI
+'control "Shopping Cart" as SC
+'entity Widget
+'database Widgets
+
+'User -> GUI : To boundary
+'GUI -> SC : To control
+'SC -> Widget : To entity
+'Widget -> Widgets : To database
+
+actor Seller
+actor Buyer
+entity MatchingEngine
+entity ProductMatchingService
+entity ProductService
+entity ProductRulesService
+
+
+autoactivate on
+Seller->ProductService: add products to db
+return
+
+Buyer->ProductRulesService: add product rules to db
+return
+
+Buyer->MatchingEngine: start matching
+MatchingEngine->ProductService: get Products
+return
+
+MatchingEngine->ProductMatchingService: match against Product
+ProductMatchingService->ProductRulesService: find rules for Product
+return
+ProductMatchingService->ProductMatchingService: match rule conditions vs Product attributes
+return
+return
+return: filter and return results
+Buyer->Buyer: Calculate totals and averages
+Buyer->Buyer: Display
+@enduml

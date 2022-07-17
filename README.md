@@ -9,6 +9,7 @@ To implement a simple rules based scoring system for products. Detailed requirem
 
 ![Class Diagram](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/balamuru/product-rules/master/docs/uml/class.puml)
 
+![Sequence Diagram](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/balamuru/product-rules/master/docs/uml/messages.puml)
 
 ### Write out, in code or psuedocode, a function that will calculate the scores, and the total and average prices for the products.
 #### Matching Algorithm
