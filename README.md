@@ -104,7 +104,6 @@ mvn clean package
 * Execute
 ```
 cd target
-mvn run
 java -jar  product-rules-0.0.1-SNAPSHOT.jar 
 ```
 #### The program must print out the total and average prices that score sufficiently highly when run from the command line.
