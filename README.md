@@ -15,13 +15,15 @@ To execute the demo, download the binary and type: `java -jar  product-rules-0.0
 * Microservice approach vs all-in one application - It was requested that this PoC be self contained executable so I chose a curated demo application powered by Spring Boot
 * I chose a sparse code approach. Each class doesn't do very much but conforms to a simple minimal API/interface. Therefore, it is possible to implement different behavior via alternate implementations
 * APIs call each other directly in an SOA-ish manner to keep things simple. If this were to be designed for scalability
-  * The API would be decoupled via a messaging broker - using a choregraphed saga pattern ("no central management service")
+  * The API would be decoupled using a messaging broker - using a choreographed event driven saga pattern ("no central management service") . 
+    * The dumb conditional comparators could be delegated to Serverless/FaaS infrastructure
+    * Services that require a more complex control loop (such as iterators, consolidators, orchestrators, collectors etc) would be implemented as microservices
   * A NoSQL DB would be used to back the product and rule stores
   * We could leverage `parallelStream()` to parallelize certain comparison operations
   * 
 ## Alternate Implementation Possibilities
 * Rule Engine based Implementation - This is what would most commonly be used if this was to be a production grade project
-* Graph DB (Neo4J). The attributes and products could be loaded from a datastore into a Graph DB with Product and Attributes modelled as nodes and the associations as edges. Queries be written to determine the matches, although scoring / weighting might be rickier  
+* Graph DB (Neo4J). The attributes and products could be loaded from a datastore into a Graph DB with Product and Attributes modelled as nodes and the associations as edges. Queries be written to determine the matches, although scoring / weighting might be rickier
 
 ## Design Tasks
 ### Draw a rough UML diagram showing the classes for the objects described above, and in particular rules and conditions. See the sample UML for product below.
@@ -30,6 +32,7 @@ To execute the demo, download the binary and type: `java -jar  product-rules-0.0
 ![Class Diagram](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/balamuru/product-rules/master/docs/uml/class.puml)
 
 ![Sequence Diagram](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/balamuru/product-rules/master/docs/uml/messages.puml)
+
 
 ### Write out, in code or psuedocode, a function that will calculate the scores, and the total and average prices for the products.
 #### Matching Algorithm
@@ -139,4 +142,25 @@ Weighted Averages
 Total price of all products: 27850.0
 Number of products that pass the conditional filter: 11001
 Average weighted price of products: 2.531588
+```
+
+#### Sample Calculation for a single item (Nike TShirt / Blue) validating observed results
+```
+Rules for "Nike TShirt"
+    Rule 1: Color == Blue && Price < 20 && qty > 100 : maxScore = 100
+    Rule 2: TRENDING == true && Type == CLOTHING : maxScore = 500
+
+
+Product
+id='658748d0-6389-4554-a702-e063556fb385', 
+	name='color', value=Blue, 
+	name='price', value=17.75, 
+	name='qty', value=1000.0, 
+	name='name', value=Nike TShirt, 
+	name='weight', value=5.0, 
+	name='type', value=CLOTHING
+
+Rule 1: satisfy 3/3 : weighted score = 100 * (5/5) = 100
+Rule 2: satisfy 1/2	: weighted score = 500 * (1/2) = 250
+Total % of conditions passed = 100*(3+1)/(3+2) = 80 % ========> this matches the observed results
 ```
