@@ -35,12 +35,8 @@ class MatchingEngineTest {
 
     @Test
     void matchFalse() {
-        Mockito.when(productService.getProducts()).thenReturn(
-                new HashSet<>() {{
-                    add(PRODUCT4);
-                }});
 
-        Mockito.when(productMatchingService.match(PRODUCT4))
+        Mockito.when(productMatchingService.match(PRODUCT4, 50))
                 .thenReturn(new ProductMatchResult(
                         PRODUCT4.getId(),
                         PRODUCT4.name(),
@@ -50,20 +46,17 @@ class MatchingEngineTest {
                         40,
                         10));
 
-        final List<ProductMatchResult> matchedProducts = matchingEngine.match();
+        final List<ProductMatchResult> matchedProducts = matchingEngine.match(new HashSet<>() {{
+            add(PRODUCT4);
+        }},50);
         assertEquals(0, matchedProducts.size());
-        Mockito.verify(productService).getProducts();
-        Mockito.verify(productMatchingService).match(PRODUCT4);
+
+        Mockito.verify(productMatchingService).match(PRODUCT4, 50);
     }
 
     @Test
     void matchTrue() {
-        Mockito.when(productService.getProducts()).thenReturn(
-                new HashSet<>() {{
-                    add(PRODUCT4);
-                }});
-
-        Mockito.when(productMatchingService.match(PRODUCT4))
+        Mockito.when(productMatchingService.match(PRODUCT4, 50))
                 .thenReturn(new ProductMatchResult(
                         PRODUCT4.getId(),
                         PRODUCT4.name(),
@@ -73,24 +66,17 @@ class MatchingEngineTest {
                         40,
                         10));
 
-        final List<ProductMatchResult> matchedProducts = matchingEngine.match();
+        final List<ProductMatchResult> matchedProducts = matchingEngine.match(new HashSet<>() {{
+            add(PRODUCT4);
+        }},50);
         assertEquals(1, matchedProducts.size());
-        Mockito.verify(productService).getProducts();
-        Mockito.verify(productMatchingService).match(PRODUCT4);
+        Mockito.verify(productMatchingService).match(PRODUCT4, 50);
     }
 
 
     @Test
     void matchPartial() {
-        Mockito.when(productService.getProducts()).thenReturn(
-                new HashSet<>() {{
-                    add(PRODUCT1);
-                    add(PRODUCT2);
-                    add(PRODUCT3);
-                    add(PRODUCT4);
-                }});
-
-        Mockito.when(productMatchingService.match(PRODUCT1))
+        Mockito.when(productMatchingService.match(PRODUCT1, 50))
                 .thenReturn(
                         new ProductMatchResult(
                                 PRODUCT1.getId(),
@@ -98,10 +84,10 @@ class MatchingEngineTest {
                                 (int) PRODUCT1.qty(),
                                 PRODUCT1.price(),
                                 true,
-                                40,
+                                70,
                                 10));
 
-        Mockito.when(productMatchingService.match(PRODUCT2))
+        Mockito.when(productMatchingService.match(PRODUCT2, 50))
                 .thenReturn(
                         new ProductMatchResult(
                                 PRODUCT2.getId(),
@@ -109,10 +95,10 @@ class MatchingEngineTest {
                                 (int) PRODUCT2.qty(),
                                 PRODUCT2.price(),
                                 true,
-                                40,
+                                60,
                                 10));
 
-        Mockito.when(productMatchingService.match(PRODUCT3))
+        Mockito.when(productMatchingService.match(PRODUCT3, 50))
                 .thenReturn(
                         new ProductMatchResult(
                                 PRODUCT3.getId(),
@@ -123,7 +109,7 @@ class MatchingEngineTest {
                                 20,
                                 10));
 
-        Mockito.when(productMatchingService.match(PRODUCT4))
+        Mockito.when(productMatchingService.match(PRODUCT4, 50))
                 .thenReturn(
                         new ProductMatchResult(
                                 PRODUCT4.getId(),
@@ -134,12 +120,16 @@ class MatchingEngineTest {
                                 10,
                                 10));
 
-        final List<ProductMatchResult> matchedProducts = matchingEngine.match();
+        final List<ProductMatchResult> matchedProducts = matchingEngine.match(  new HashSet<>() {{
+            add(PRODUCT1);
+            add(PRODUCT2);
+            add(PRODUCT3);
+            add(PRODUCT4);
+        }}, 50);
         assertEquals(2, matchedProducts.size()); //only 2 of the products match rules
-        Mockito.verify(productService, Mockito.times(1)).getProducts();
-        Mockito.verify(productMatchingService, Mockito.times(1)).match(PRODUCT1);
-        Mockito.verify(productMatchingService, Mockito.times(1)).match(PRODUCT2);
-        Mockito.verify(productMatchingService, Mockito.times(1)).match(PRODUCT3);
-        Mockito.verify(productMatchingService, Mockito.times(1)).match(PRODUCT4);
+        Mockito.verify(productMatchingService, Mockito.times(1)).match(PRODUCT1, 50);
+        Mockito.verify(productMatchingService, Mockito.times(1)).match(PRODUCT2, 50);
+        Mockito.verify(productMatchingService, Mockito.times(1)).match(PRODUCT3, 50);
+        Mockito.verify(productMatchingService, Mockito.times(1)).match(PRODUCT4, 50);
     }
 }

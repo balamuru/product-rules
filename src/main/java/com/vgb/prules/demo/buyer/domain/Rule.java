@@ -8,29 +8,34 @@ import java.util.Objects;
  * Product rule
  */
 public class Rule {
+    private String name;
     private final int maxScore;
     private final RuleConstants.LogicalOperator logicalOperator;
     private final List<Condition> conditions;
 
     /**
      * Constructor
+     * @param name
      * @param maxScore
      * @param logicalOperator
      * @param conditions
      */
-    public Rule(int maxScore, RuleConstants.LogicalOperator logicalOperator, List<Condition> conditions) {
+    public Rule(String name, int maxScore, RuleConstants.LogicalOperator logicalOperator, List<Condition> conditions) {
+        this.name = name;
         this.maxScore = maxScore;
         this.logicalOperator = logicalOperator;
         this.conditions = conditions;
     }
 
+
     /**
      * Constructor
+     * @param name
      * @param maxScore
      * @param conditions
      */
-    public Rule(int maxScore, List<Condition> conditions) {
-        this(maxScore, RuleConstants.LogicalOperator.AND, conditions);
+    public Rule(String name, int maxScore, List<Condition> conditions) {
+        this(name, maxScore, RuleConstants.LogicalOperator.AND, conditions);
     }
 
     /**
@@ -57,23 +62,28 @@ public class Rule {
         return Collections.unmodifiableList(conditions);
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Rule rule = (Rule) o;
-        return maxScore == rule.maxScore && logicalOperator == rule.logicalOperator && Objects.equals(conditions, rule.conditions);
+        return maxScore == rule.maxScore && Objects.equals(name, rule.name) && logicalOperator == rule.logicalOperator && Objects.equals(conditions, rule.conditions);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(maxScore, logicalOperator, conditions);
+        return Objects.hash(name, maxScore, logicalOperator, conditions);
     }
 
     @Override
     public String toString() {
         return "Rule{" +
-                "maxScore=" + maxScore +
+                "name='" + name + '\'' +
+                ", maxScore=" + maxScore +
                 ", logicalOperator=" + logicalOperator +
                 ", conditions=" + conditions +
                 '}';

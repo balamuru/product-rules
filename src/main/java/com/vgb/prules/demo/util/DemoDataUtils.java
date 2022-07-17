@@ -64,14 +64,14 @@ public class DemoDataUtils {
         put(QTY, new NumberAttribute(QTY, 10000));
     }});
 
-    public static final Rule RULE1A = new Rule(100,
+    public static final Rule RULE1A = new Rule("product-1/rule-a", 100,
             new ArrayList<>() {{
                 add(new Condition(EQUALS, new StringAttribute(COLOR, "Blue")));
                 add(new Condition(LESS_THAN, new NumberAttribute(PRICE, 20f)));
                 add(new Condition(GREATER_THAN, new NumberAttribute(QTY, 100)));
             }}
     );
-    public static final Rule RULE1B = new Rule(500,
+    public static final Rule RULE1B = new Rule("product-1/rule-b", 500,
             new ArrayList<>() {{
                 add(new Condition(EQUALS, new BooleanAttribute(TRENDING, true)));
                 add(new Condition(EQUALS, new EnumeratedAttribute(TYPE, CLOTHING)));
@@ -79,7 +79,7 @@ public class DemoDataUtils {
             }}
     );
     public static final Rule RULE2 = new Rule(
-            100,
+            "product-2/rule", 100,
             new ArrayList<>() {{
                 add(new Condition(EQUALS, new StringAttribute(COLOR, "Yellow")));
                 add(new Condition(LESS_THAN, new NumberAttribute(PRICE, 300)));
@@ -88,6 +88,7 @@ public class DemoDataUtils {
     );
 
     public static final Rule RULE3A = new Rule(
+            "product-3/rule-a",
             200,
             new ArrayList<>() {{
                 add(new Condition(EQUALS, new StringAttribute(COLOR, "Yellow")));
@@ -96,6 +97,7 @@ public class DemoDataUtils {
     );
 
     public static final Rule RULE3B = new Rule(
+            "product-3/rule-b",
             -1000,
             new ArrayList<>() {{
                 add(new Condition(EQUALS, new BooleanAttribute(FDA_APPROVED, false)));

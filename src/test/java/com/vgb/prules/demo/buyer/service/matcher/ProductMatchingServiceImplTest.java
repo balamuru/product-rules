@@ -38,11 +38,12 @@ class ProductMatchingServiceImplTest {
     private StringAttributeEvaluatorService stringAttributeEvaluatorService;
     @Spy
     private EnumAttributeEvaluatorService enumAttributeEvaluatorService;
-
+    @Spy
+    @InjectMocks
+    private RuleMatcherServiceImpl rulesMatcherService;
     @BeforeEach
     public void init() {
         MockitoAnnotations.openMocks(this);
-        productMatchingService.setSuccessfulConditionPercentageThreshold(50);
     }
 
     @Test
@@ -51,7 +52,7 @@ class ProductMatchingServiceImplTest {
         //assume no rules available for product
         Mockito.when(productRulesService.getRuleByProductName(product.name()))
                 .thenReturn(new ArrayList<>());
-        ProductMatchResult result = productMatchingService.match(product);
+        ProductMatchResult result = productMatchingService.match(product, 50);
         assertEquals(product.name(), result.getProductName());
         assertEquals(0, result.getPercentConditionsSatisfied());
         assertFalse(result.isMatch());
@@ -70,11 +71,34 @@ class ProductMatchingServiceImplTest {
                     add(DemoDataUtils.RULE1A);
                     add(DemoDataUtils.RULE1B);
                 }});
-        ProductMatchResult result = productMatchingService.match(product);
+        ProductMatchResult result = productMatchingService.match(product, 50);
         assertEquals(product.name(), result.getProductName());
         assertEquals(80f, result.getPercentConditionsSatisfied());
         assertTrue(result.isMatch());
-        assertEquals(5, DemoDataUtils.RULE1A.getConditions().size() + DemoDataUtils.RULE1B.getConditions().size()); //4 conditions in total
+        assertEquals(5, DemoDataUtils.RULE1A.getConditions().size() + DemoDataUtils.RULE1B.getConditions().size()); //5 conditions in total
+
+        Mockito.verify(productRulesService).getRuleByProductName(Mockito.any());
+        Mockito.verify(attributeEvaluatorService, Mockito.times(5)).evaluate(Mockito.any(), Mockito.any(), Mockito.any());
+        Mockito.verify(numberAttributeEvaluatorService, Mockito.times(2)).evaluate(Mockito.any(), Mockito.any(), Mockito.any());
+        Mockito.verify(stringAttributeEvaluatorService, Mockito.times(1)).evaluate(Mockito.any(), Mockito.any(), Mockito.any());
+        Mockito.verify(booleanAttributeEvaluatorService, Mockito.never()).evaluate(Mockito.any(), Mockito.any(), Mockito.any()); //attribute was not present in target product, so never evaluated (still tagged in master evaluated service once though)
+        Mockito.verify(enumAttributeEvaluatorService, Mockito.times(1)).evaluate(Mockito.any(), Mockito.any(), Mockito.any());
+    }
+
+
+    @Test
+    void matchWithRulesAndBelowThreshold() throws MatcherException {
+        Product product = DemoDataUtils.PRODUCT1;
+        Mockito.when(productRulesService.getRuleByProductName(product.name()))
+                .thenReturn(new ArrayList<>() {{
+                    add(DemoDataUtils.RULE1A);
+                    add(DemoDataUtils.RULE1B);
+                }});
+        ProductMatchResult result = productMatchingService.match(product, 90);
+        assertEquals(product.name(), result.getProductName());
+        assertEquals(80f, result.getPercentConditionsSatisfied());
+        assertFalse(result.isMatch());
+        assertEquals(5, DemoDataUtils.RULE1A.getConditions().size() + DemoDataUtils.RULE1B.getConditions().size()); //5 conditions in total
 
         Mockito.verify(productRulesService).getRuleByProductName(Mockito.any());
         Mockito.verify(attributeEvaluatorService, Mockito.times(5)).evaluate(Mockito.any(), Mockito.any(), Mockito.any());

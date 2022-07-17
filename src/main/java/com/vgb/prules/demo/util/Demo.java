@@ -3,10 +3,13 @@ package com.vgb.prules.demo.util;
 import com.vgb.prules.demo.buyer.domain.ProductMatchResult;
 import com.vgb.prules.demo.buyer.engine.MatchingEngine;
 import com.vgb.prules.demo.buyer.service.ProductRulesService;
+import com.vgb.prules.demo.common.domain.Product;
 import com.vgb.prules.demo.seller.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
 import java.util.List;
 
 import static com.vgb.prules.demo.util.DemoDataUtils.*;
@@ -28,18 +31,24 @@ public class Demo {
     @Autowired
     private MatchingEngine matchingEngine;
 
+    @Value("${rule.success.threshold}")
+    private int successfulConditionPercentageThreshold;
+
     public void init() {
         addSampleProducts();
         addSampleRules();
     }
 
     public void run() {
+        //Get products we're interested in (all in this demo case)
+        final Collection<Product> products = productService.getProducts();
+
         //dump all products
         System.err.println("All Products:");
-        productService.getProducts().forEach(product -> System.err.println(product));
+        products.forEach(product -> System.err.println(product));
 
         //match all products
-        final List<ProductMatchResult> matchedProducts = matchingEngine.match();
+        final List<ProductMatchResult> matchedProducts = matchingEngine.match(products, successfulConditionPercentageThreshold);
         System.err.println();
 
         //print matched products

@@ -2,24 +2,13 @@
 
 title "Messages - Sequence Diagram"
 
-'actor User
-'boundary "Web GUI" as GUI
-'control "Shopping Cart" as SC
-'entity Widget
-'database Widgets
-
-'User -> GUI : To boundary
-'GUI -> SC : To control
-'SC -> Widget : To entity
-'Widget -> Widgets : To database
-
 actor Seller
 actor Buyer
 entity MatchingEngine
 entity ProductMatchingService
-entity ProductService
+entity RuleMatchingService
 entity ProductRulesService
-
+entity ProductService
 
 autoactivate on
 Seller->ProductService: add products to db
@@ -32,12 +21,14 @@ Buyer->MatchingEngine: start matching
 MatchingEngine->ProductService: get Products
 return
 
-MatchingEngine->ProductMatchingService: match against Product
-ProductMatchingService->ProductRulesService: find rules for Product
+MatchingEngine->ProductMatchingService: match against Product and threshold
+ProductMatchingService->RuleMatchingService: match Rule condistions against Product attribvutes
+RuleMatchingService->ProductRulesService: find rules for Product
 return
-ProductMatchingService->ProductMatchingService: match rule conditions vs Product attributes
+ProductMatchingService->ProductMatchingService: consolidate match stats
 return
 return
+return: return results for all rules for a product
 return: filter and return results
 Buyer->Buyer: Calculate totals and averages
 Buyer->Buyer: Display
