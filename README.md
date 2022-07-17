@@ -1,6 +1,6 @@
 # product-rules
 ## Binary Release
-A pre-built release has been added to this repository [here](release/product-rules-0.0.1-SNAPSHOT.jar). Source build / Execution instructions follow later in the document
+A pre-built release has been added to this repository [here](release/). Source build / Execution instructions follow later in the document
 ## High level requirement
 To implement a simple rules based scoring system for products. Detailed requirements available [here](docs/requirements.docx)
 
