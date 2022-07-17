@@ -39,16 +39,16 @@ initialize counters for weightedSPriceSum, totalQty, distinctPriceSum, distinctQ
 
 for each result
   accumulate 
-    weightedSPriceSum+=price*qty;
-    totalQty+=qty;
-    distinctPriceSum+=price;
-    distinctQty+=1;  
+    weightedSPriceSum+=price*qty
+    totalQty+=qty
+    distinctPriceSum+=price
+    distinctQty+=1
 
 display distinctPriceSum
 display distinctQty
 display distinct average = distinctPriceSum/distinctQty
 
-display weightedSPriceSum
+display weightedPriceSum
 display totalQty
 display weighted average = weightedSPriceSum/totalQty
 ```
