@@ -20,7 +20,7 @@ To execute the demo, download the binary and type: `java -jar  product-rules-0.0
     * Services that require a more complex control loop (such as iterators, consolidators, orchestrators, collectors etc) would be implemented as microservices
   * A NoSQL DB would be used to back the product and rule stores
   * We could leverage `parallelStream()` to parallelize certain comparison operations
-  * 
+  
 ## Alternate Implementation Possibilities
 * Rule Engine based Implementation - This is what would most commonly be used if this was to be a production grade project
 * Graph DB (Neo4J). The attributes and products could be loaded from a datastore into a Graph DB with Product and Attributes modelled as nodes and the associations as edges. Queries be written to determine the matches, although scoring / weighting might be rickier
