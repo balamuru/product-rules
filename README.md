@@ -1,10 +1,27 @@
 # product-rules
-## Binary Release
-A pre-built release has been added to this repository [here](release/). Source build follow later in the document. 
 
-To execute the demo , download the binary and type: `java -jar  product-rules-0.0.1-SNAPSHOT.jar`
 ## High level requirement
 To implement a simple rules based scoring system for products. Detailed requirements available [here](docs/requirements.docx)
+
+## API Docs
+API Documentation can be generated via `mvn javadoc:javadoc` and by default is generated in the folder [docs/api](docs/api)
+
+## Binary Release
+A pre-built release has been added to this repository [here](release/). Source build follow later in the document.
+To execute the demo, download the binary and type: `java -jar  product-rules-0.0.1-SNAPSHOT.jar` to execute
+
+## Design Decisions / Choices
+* Rules framework vs DIY naive matching - I chose a DIY approach as I figured the objective of the exercise was to evaluate my software dev skills rather than my Rules framework expertise
+* Microservice approach vs all-in one application - It was requested that this PoC be self contained executable so I chose a curated demo application powered by Spring Boot
+* I chose a sparse code approach. Each class doesn't do very much but conforms to a simple minimal API/interface. Therefore, it is possible to implement different behavior via alternate implementations
+* APIs call each other directly in an SOA-ish manner to keep things simple. If this were to be designed for scalability
+  * The API would be decoupled via a messaging broker - using a choregraphed saga pattern ("no central management service")
+  * A NoSQL DB would be used to back the product and rule stores
+  * We could leverage `parallelStream()` to parallelize certain comparison operations
+  * 
+## Alternate Implementation Possibilities
+* Rule Engine based Implementation - This is what would most commonly be used if this was to be a production grade project
+* Graph DB (Neo4J). The attributes and products could be loaded from a datastore into a Graph DB with Product and Attributes modelled as nodes and the associations as edges. Queries be written to determine the matches, although scoring / weighting might be rickier  
 
 ## Design Tasks
 ### Draw a rough UML diagram showing the classes for the objects described above, and in particular rules and conditions. See the sample UML for product below.
