@@ -1,5 +1,7 @@
 # product-rules
 
+[![CircleCI](https://dl.circleci.com/insights-snapshot/gh/balamuru/product-rules/master/sample/badge.svg?window=30d)](https://app.circleci.com/insights/github/balamuru/product-rules/workflows/sample/overview?branch=master&reporting-window=last-30-days&insights-snapshot=true)
+
 ## High level requirement
 To implement a simple rules based scoring system for products. Detailed requirements available [here](docs/requirements.docx)
 
